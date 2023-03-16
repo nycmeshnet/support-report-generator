@@ -1,9 +1,9 @@
 import pytz
 
-from post_to_slack import post_to_slack
-from ufiber_outages import get_ufiber_outage_lists
-from uisp_outages import get_uisp_outage_lists
-from unifi_outages import get_unifi_outage_lists
+from mesh_supportbot_list.post_to_slack import post_to_slack
+from mesh_supportbot_list.ufiber_outages import get_ufiber_outage_lists
+from mesh_supportbot_list.uisp_outages import get_uisp_outage_lists
+from mesh_supportbot_list.unifi_outages import get_unifi_outage_lists
 
 from io import StringIO
 

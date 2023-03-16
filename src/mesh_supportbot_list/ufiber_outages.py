@@ -5,7 +5,7 @@ import os
 
 from dotenv import load_dotenv
 import requests
-import endpoints
+import mesh_supportbot_list.endpoints as endpoints
 
 load_dotenv()
 
