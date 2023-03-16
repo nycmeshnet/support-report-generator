@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime, timezone, timedelta
 import json
 import os
@@ -41,7 +42,7 @@ def get_device_details(session: requests.Session, ufiber_base_url: str, device_i
     )
 
 
-def get_ufiber_outage_lists():
+def get_ufiber_outage_lists(stream=sys.stdout):
     poor_signal_devices = []
     disconnected_devices = []
     for ufiber_endpoint in endpoints.UFIBER_BASES:
@@ -71,12 +72,12 @@ def get_ufiber_outage_lists():
     yesterday = datetime.now(tz=timezone.utc) - timedelta(hours=24.1)
     last_week = datetime.now(tz=timezone.utc) - timedelta(days=7)
 
-    print("UFIBER - Currently In Outage")
+    print("UFIBER - Currently In Outage", file=stream)
     for device in disconnected_devices:
-        print(f"{device['name']}")
+        print(f"{device['name']}", file=stream)
     if len(disconnected_devices) == 0:
-        print("-- None --")
+        print("-- None --", file=stream)
 
-    print("\n\nUFIBER - Poor Signal")
+    print("\n\nUFIBER - Poor Signal (< -30 dBm)", file=stream)
     for device in poor_signal_devices:
-        print(f"{device['name']} ({device['rxPower']} dBm)")
+        print(f"{device['name']} ({device['rxPower']} dBm)", file=stream)

@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime, timezone, timedelta
 import json
 import os
@@ -39,7 +40,7 @@ def get_devices(session: requests.Session, site_id: str):
     )["data"]
 
 
-def get_unifi_outage_lists():
+def get_unifi_outage_lists(stream=sys.stdout):
     session = requests.Session()
     login(session)
     sites = [{"name": site["desc"], "id": site["name"]} for site in list_sites(session)]
@@ -76,36 +77,17 @@ def get_unifi_outage_lists():
     new_outages = [
         device
         for device in devices_simplified
-        if device["in_outage"] and device["most_recent_disconnect_time"] > yesterday
+        if device["in_outage"] and device["most_recent_disconnect_time"] > last_week
     ]
 
-    recent_outages = [
-        device
-        for device in devices_simplified
-        if device["most_recent_disconnect_time"] > last_week
-        and device["id"] not in [dev["id"] for dev in new_outages]
-    ]
-    #
-    print("UNIFI - Currently In Outage (new last 24 hours)")
+    print("UNIFI - Currently In Outage (new last 7 days)", file=stream)
     for device in new_outages:
-        print(f"{device['site']} {device['name']}")
+        outage_time = (
+            device["most_recent_disconnect_time"]
+            .astimezone(tz=pytz.timezone("US/Eastern"))
+            .strftime("%Y-%m-%d @ %H:%M")
+        )
+        outage_status = f"(offline since {outage_time})"
+        print(f"{device['site']} ({device['name']}) {outage_status}", file=stream)
     if len(new_outages) == 0:
-        print("-- None --")
-
-    print("\n\nUNIFI - Other Recent Outages (last 7 days)")
-    for device in recent_outages:
-        if device["in_outage"]:
-            outage_time = (
-                device["most_recent_disconnect_time"]
-                .astimezone(tz=pytz.timezone("US/Eastern"))
-                .strftime("%Y-%m-%d @ %H:%M")
-            )
-            outage_status = f"OFFLINE since {outage_time}"
-        else:
-            recovery_time = (
-                device["most_recent_connect_time"]
-                .astimezone(tz=pytz.timezone("US/Eastern"))
-                .strftime("%Y-%m-%d @ %H:%M")
-            )
-            outage_status = f"Reconnected {recovery_time}"
-        print(f"{device['site']} {device['name']} {outage_status}")
+        print("-- None --", file=stream)
