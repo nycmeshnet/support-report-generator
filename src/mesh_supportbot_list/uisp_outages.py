@@ -3,6 +3,7 @@ from datetime import datetime, timezone, timedelta
 import json
 import os
 
+from dateutil import parser
 import pytz as pytz
 from dotenv import load_dotenv
 import requests
@@ -47,14 +48,13 @@ def get_uisp_outage_lists(stream=sys.stdout):
     new_outages = [
         outage
         for outage in outages["items"]
-        if datetime.fromisoformat(outage["startTimestamp"]) > last_week
-        and outage["ongoing"]
+        if parser.parse(outage["startTimestamp"]) > last_week and outage["ongoing"]
     ]
 
     print("UISP - Currently In Outage (new last 7 days)", file=stream)
     for outage in new_outages:
         outage_time = (
-            datetime.fromisoformat(outage["startTimestamp"])
+            parser.parse(outage["startTimestamp"])
             .astimezone(tz=pytz.timezone("US/Eastern"))
             .strftime("%Y-%m-%d @ %H:%M")
         )
