@@ -1,0 +1,8 @@
+[project]
+name = "MeshSupportList"
+version = "1.0"
+dependencies = [
+    "requests",
+    "python-dotenv",
+    "slack-sdk>=3.12,<4",
+]
