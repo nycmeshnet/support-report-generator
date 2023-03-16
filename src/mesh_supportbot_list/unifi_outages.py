@@ -61,7 +61,7 @@ def get_unifi_outage_lists(stream=sys.stdout):
             "most_recent_connect_time": datetime.fromtimestamp(
                 device["start_connected_millis"] / 1000, timezone.utc
             )
-            if device["state"]
+            if device["state"] == 1
             else None,
             "most_recent_disconnect_time": datetime.fromtimestamp(
                 device["start_disconnected_millis"] / 1000, timezone.utc
