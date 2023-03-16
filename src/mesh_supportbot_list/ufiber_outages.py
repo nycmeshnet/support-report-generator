@@ -3,7 +3,6 @@ from datetime import datetime, timezone, timedelta
 import json
 import os
 
-import pytz as pytz
 from dotenv import load_dotenv
 import requests
 import endpoints
