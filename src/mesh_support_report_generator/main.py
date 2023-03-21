@@ -33,7 +33,14 @@ def main():
     diagnostics_str = string_stream.read()
     print(diagnostics_str)
     if os.environ.get("SLACK_ENABLED", "False") == "True":
-        post_to_slack(report_header, diagnostics_str)
+        print("Posting to slack...")
+        file_url = post_to_slack(report_header, diagnostics_str)
+        print(f"Posted to {file_url}")
+    else:
+        print(
+            "Not uploading to slack. Set the environment variable SLACK_ENABLED=True "
+            "to enable automatic posting to slack"
+        )
 
 
 if __name__ == "__main__":

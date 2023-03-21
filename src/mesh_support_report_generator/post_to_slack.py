@@ -15,8 +15,9 @@ def post_to_slack(report_header: str, diagnostics_str: str):
         title=report_header,
         filename=report_header + ".md",
         content=diagnostics_str,
-        channels=os.environ["SLACK_CHANNEL_ID"],
+        channel=os.environ["SLACK_CHANNEL_ID"],
         initial_comment=" ".join(
             ["<@%s>" % uid for uid in os.environ["SLACK_USERS_TO_AT"].split(",")]
         ),
     )
+    return f"https://app.slack.com/client/{resp['file']['user_team']}/{os.environ['SLACK_CHANNEL_ID']}"
