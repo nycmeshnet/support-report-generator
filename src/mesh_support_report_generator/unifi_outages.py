@@ -6,7 +6,7 @@ import os
 import pytz as pytz
 from dotenv import load_dotenv
 import requests
-import mesh_supportbot_list.endpoints as endpoints
+import mesh_support_report_generator.endpoints as endpoints
 
 load_dotenv()
 
