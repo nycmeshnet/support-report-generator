@@ -8,3 +8,6 @@ dependencies = [
     "pytz",
     "python-dateutil"
 ]
+
+[project.scripts]
+mesh-support-report = "mesh_support_report_generator:main.main"
