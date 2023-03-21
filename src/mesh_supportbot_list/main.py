@@ -1,3 +1,5 @@
+import os
+
 import pytz
 
 from mesh_supportbot_list.post_to_slack import post_to_slack
@@ -26,7 +28,8 @@ def main():
     string_stream.seek(0)
     diagnostics_str = string_stream.read()
     print(diagnostics_str)
-    post_to_slack(report_header, diagnostics_str)
+    if os.environ.get("SLACK_ENABLED", "False") == "True":
+        post_to_slack(report_header, diagnostics_str)
 
 
 if __name__ == "__main__":
