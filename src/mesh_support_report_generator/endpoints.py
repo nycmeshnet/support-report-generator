@@ -1,6 +1,7 @@
 UISP_BASE = "https://uisp.mesh.nycmesh.net/nms/api/v2.1"
 UISP_LOGIN = UISP_BASE + "/user/login"
 UISP_OUTAGES = UISP_BASE + "/outages"
+UISP_DEVICE_DETAILS = UISP_BASE + "/devices/"
 
 UNIFI_BASE = "https://unifi.nycmesh.net:8443/api"
 UNIFI_LOGIN = UNIFI_BASE + "/login"

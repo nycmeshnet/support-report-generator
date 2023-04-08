@@ -9,7 +9,9 @@ import mesh_support_report_generator.endpoints as endpoints
 
 load_dotenv()
 
-MIN_RX_POWER = -30
+IGNORE_OUTAGE_TOKEN = os.environ["IGNORE_OUTAGE_TOKEN"]
+
+MIN_RX_POWER = -28
 MIN_EXPERIENCE = 100
 
 
@@ -54,9 +56,12 @@ def get_ufiber_outage_lists(stream=sys.stdout):
 
         for device in devices:
             if not device["connected"]:
-                disconnected_devices.append(
-                    get_device_details(session, ufiber_endpoint, device["serial"])
+                device_details = get_device_details(
+                    session, ufiber_endpoint, device["serial"]
                 )
+                device_notes = device_details["notes"]
+                if not device_notes or IGNORE_OUTAGE_TOKEN not in device_notes:
+                    disconnected_devices.append(device_details)
                 continue
             if device.get("rxPower", 0) < MIN_RX_POWER:
                 poor_signal_devices.append(
