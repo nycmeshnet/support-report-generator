@@ -9,5 +9,11 @@ dependencies = [
     "python-dateutil"
 ]
 
+[project.optional-dependencies]
+test = [
+    "pytest >= 6",
+    "coverage"
+]
+
 [project.scripts]
 mesh-support-report = "mesh_support_report_generator:main.main"
