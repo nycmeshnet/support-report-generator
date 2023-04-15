@@ -11,7 +11,8 @@ import mesh_support_report_generator.endpoints as endpoints
 
 load_dotenv()
 
-IGNORE_OUTAGE_TOKEN = os.environ["IGNORE_OUTAGE_TOKEN"]
+IGNORE_OUTAGE_TOKEN = os.environ.get("IGNORE_OUTAGE_TOKEN")
+UISP_IGNORE_SITE_IDS = os.environ.get("UISP_IGNORE_SITE_IDS", "").split(",")
 
 
 def login(session: requests.Session):
@@ -65,8 +66,11 @@ def get_uisp_outage_lists(stream=sys.stdout):
     for outage in new_outages:
         device_details = get_device(session, outage["device"]["id"])
         notes = device_details["meta"]["note"]
-        if not notes or IGNORE_OUTAGE_TOKEN not in device_details["meta"]["note"]:
-            not_ignored_outages.append(outage)
+        if notes and IGNORE_OUTAGE_TOKEN in device_details["meta"]["note"]:
+            continue
+        if device_details["identification"]["site"]["id"] in UISP_IGNORE_SITE_IDS:
+            continue
+        not_ignored_outages.append(outage)
 
     outages_to_print = not_ignored_outages
 
