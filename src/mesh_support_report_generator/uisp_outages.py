@@ -12,6 +12,7 @@ load_dotenv()
 
 IGNORE_OUTAGE_TOKEN = os.environ.get("IGNORE_OUTAGE_TOKEN")
 UISP_IGNORE_SITE_IDS = os.environ.get("UISP_IGNORE_SITE_IDS", "").split(",")
+LAST_N_DAYS_TO_REPORT = 7
 
 
 def login(session: requests.Session):
@@ -53,7 +54,7 @@ def get_uisp_outage_lists():
     session.headers = {"x-auth-token": login(session)}
     outages = get_outages(session, 1000, 1)
 
-    last_week = datetime.now(tz=timezone.utc) - timedelta(days=7)
+    last_week = datetime.now(tz=timezone.utc) - timedelta(days=LAST_N_DAYS_TO_REPORT)
     new_outages = [
         outage
         for outage in outages["items"]

@@ -9,6 +9,8 @@ from mesh_support_report_generator.incident import Incident, IncidentType
 
 load_dotenv()
 
+LAST_N_DAYS_TO_REPORT = 7
+
 
 def login(session: requests.Session):
     return session.post(
@@ -69,7 +71,7 @@ def get_unifi_outage_lists():
         for device in devices_full_data
     ]
 
-    last_week = datetime.now(tz=timezone.utc) - timedelta(days=7)
+    last_week = datetime.now(tz=timezone.utc) - timedelta(days=LAST_N_DAYS_TO_REPORT)
 
     return [
         Incident(
