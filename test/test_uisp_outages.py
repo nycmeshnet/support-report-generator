@@ -54,7 +54,7 @@ def mock_get_device():
 )
 @freeze_time("2023-04-15")
 def test_get_uisp_outage_lists(mock_login, mock_get_outages, mock_get_device):
-    incidents = uisp_outages.get_uisp_outage_lists()
+    incidents, ignored_incidents = uisp_outages.get_uisp_outage_lists()
     expected_incidents = [
         Incident(
             device_name="nycmesh-lbe-4018",
@@ -87,4 +87,22 @@ def test_get_uisp_outage_lists(mock_login, mock_get_outages, mock_get_device):
             incident_type=IncidentType.OUTAGE,
         ),
     ]
+
     assert incidents == expected_incidents
+
+    assert ignored_incidents == [
+        Incident(
+            device_name="nycmesh-yyyy-test-dev",
+            site_name="Grand Street - 1933",
+            event_time=None,
+            incident_type=IncidentType.OUTAGE,
+            ignored=True,
+        ),
+        Incident(
+            device_name="nycmesh-yyyy-test-dev",
+            site_name="otherstuff   abc def",
+            event_time=None,
+            incident_type=IncidentType.OUTAGE,
+            ignored=True,
+        ),
+    ]

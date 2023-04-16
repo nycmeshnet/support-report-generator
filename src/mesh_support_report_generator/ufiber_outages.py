@@ -51,26 +51,32 @@ def create_incident(
 ):
     device_details = get_device_details(session, ufiber_endpoint, device["serial"])
     device_notes = device_details["notes"]
-    if not device_notes or IGNORE_OUTAGE_TOKEN not in device_notes:
-        if incident_type == IncidentType.OUTAGE:
-            return Incident(
-                device_name=device_details["name"],
-                incident_type=IncidentType.OUTAGE,
-            )
-        elif incident_type == IncidentType.POOR_EXPERIENCE:
-            return Incident(
-                device_name=device_details["name"],
-                incident_type=IncidentType.POOR_EXPERIENCE,
-                metric_value=device.get("experience", "N/A"),
-            )
-        elif incident_type == IncidentType.POOR_SIGNAL:
-            return Incident(
-                device_name=device_details["name"],
-                incident_type=IncidentType.POOR_SIGNAL,
-                metric_value=device["rxPower"],
-            )
 
-    return None
+    ignored = bool(device_notes and IGNORE_OUTAGE_TOKEN in device_notes)
+    if incident_type == IncidentType.OUTAGE:
+        return Incident(
+            device_name=device_details["name"],
+            incident_type=IncidentType.OUTAGE,
+            ignored=ignored,
+        )
+
+    if incident_type == IncidentType.POOR_EXPERIENCE:
+        return Incident(
+            device_name=device_details["name"],
+            incident_type=IncidentType.POOR_EXPERIENCE,
+            metric_value=device.get("experience", "N/A"),
+            ignored=ignored,
+        )
+
+    if incident_type == IncidentType.POOR_SIGNAL:
+        return Incident(
+            device_name=device_details["name"],
+            incident_type=IncidentType.POOR_SIGNAL,
+            metric_value=device["rxPower"],
+            ignored=ignored,
+        )
+
+    raise TypeError(f"Invalid incident_type: {incident_type}")
 
 
 def get_ufiber_outage_lists(ufiber_endpoint):
@@ -103,4 +109,7 @@ def get_ufiber_outage_lists(ufiber_endpoint):
             )
             continue
 
-    return [incident for incident in incidents if incident is not None]
+    return {
+        "reported": [incident for incident in incidents if not incident.ignored],
+        "ignored": [incident for incident in incidents if incident.ignored],
+    }

@@ -11,7 +11,7 @@ from mesh_support_report_generator.report import write_report
 @freeze_time("2023-04-15")
 def test_report_no_incidents():
     stream = StringIO()
-    write_report(stream, [], [], [])
+    write_report(stream, [], [], [], [])
     stream.seek(0)
     assert (
         stream.read()
@@ -34,6 +34,10 @@ UFIBER - Poor Experience (< 100%)
 
 
 UFIBER - Poor Signal (< -28 dBm)
+-- None --
+
+
+Ignored Issues - All Sources
 -- None --
 """
     )
@@ -60,7 +64,7 @@ def test_report_uisp_only():
     ]
 
     stream = StringIO()
-    write_report(stream, uisp_outages, [], [])
+    write_report(stream, uisp_outages, [], [], [])
     stream.seek(0)
     assert (
         stream.read()
@@ -85,6 +89,10 @@ UFIBER - Poor Experience (< 100%)
 
 
 UFIBER - Poor Signal (< -28 dBm)
+-- None --
+
+
+Ignored Issues - All Sources
 -- None --
 """
     )
@@ -114,7 +122,7 @@ def test_report_unifi_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], unifi_outages, [])
+    write_report(stream, [], unifi_outages, [], [])
     stream.seek(0)
     assert (
         stream.read()
@@ -140,6 +148,10 @@ UFIBER - Poor Experience (< 100%)
 
 UFIBER - Poor Signal (< -28 dBm)
 -- None --
+
+
+Ignored Issues - All Sources
+-- None --
 """
     )
 
@@ -155,7 +167,7 @@ def test_report_ufiber_outage_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], [], ufiber_outages)
+    write_report(stream, [], [], ufiber_outages, [])
     stream.seek(0)
     assert (
         stream.read()
@@ -179,6 +191,10 @@ UFIBER - Poor Experience (< 100%)
 
 UFIBER - Poor Signal (< -28 dBm)
 -- None --
+
+
+Ignored Issues - All Sources
+-- None --
 """
     )
 
@@ -195,7 +211,7 @@ def test_report_ufiber_poor_experience_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], [], ufiber_outages)
+    write_report(stream, [], [], ufiber_outages, [])
     stream.seek(0)
     assert (
         stream.read()
@@ -219,6 +235,10 @@ nycmesh-abc-456 (grand2) (45%)
 
 UFIBER - Poor Signal (< -28 dBm)
 -- None --
+
+
+Ignored Issues - All Sources
+-- None --
 """
     )
 
@@ -235,7 +255,7 @@ def test_report_ufiber_poor_signal_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], [], ufiber_outages)
+    write_report(stream, [], [], ufiber_outages, [])
     stream.seek(0)
     assert (
         stream.read()
@@ -259,6 +279,10 @@ UFIBER - Poor Experience (< 100%)
 
 UFIBER - Poor Signal (< -28 dBm)
 nycmesh-abc-789 (grand3) (-34.43 dBm)
+
+
+Ignored Issues - All Sources
+-- None --
 """
     )
 
@@ -321,9 +345,16 @@ def test_report_all():
             metric_value=-34.43,
         ),
     ]
+    ignored_outages = [
+        Incident(
+            device_name="nycmesh-abc-123",
+            site_name="Ignore token detected",
+            incident_type=IncidentType.OUTAGE,
+        ),
+    ]
 
     stream = StringIO()
-    write_report(stream, uisp_outages, unifi_outages, ufiber_outages)
+    write_report(stream, uisp_outages, unifi_outages, ufiber_outages, ignored_outages)
     stream.seek(0)
     assert (
         stream.read()
@@ -351,5 +382,9 @@ nycmesh-abc-456 (grand2) (45%)
 
 UFIBER - Poor Signal (< -28 dBm)
 nycmesh-abc-789 (grand3) (-34.43 dBm)
+
+
+Ignored Issues - All Sources
+nycmesh-abc-123 (Ignore token detected)
 """
     )

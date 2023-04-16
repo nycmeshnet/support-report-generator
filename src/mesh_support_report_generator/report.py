@@ -7,7 +7,13 @@ from mesh_support_report_generator import uisp_outages, unifi_outages, ufiber_ou
 from mesh_support_report_generator.incident import IncidentType
 
 
-def write_report(stream: sys.stdout, uisp_incidents, unifi_incidents, ufiber_incidents):
+def write_report(
+    stream: sys.stdout,
+    uisp_incidents,
+    unifi_incidents,
+    ufiber_incidents,
+    ignored_incidents,
+):
     report_time = datetime.now(tz=pytz.timezone("US/Eastern")).strftime(
         "%A, %B %d, %Y @ %H:%M"
     )
@@ -66,6 +72,13 @@ def write_report(stream: sys.stdout, uisp_incidents, unifi_incidents, ufiber_inc
         incident.incident_type == IncidentType.POOR_SIGNAL
         for incident in ufiber_incidents
     ):
+        print("-- None --", file=stream)
+    stream.write("\n\n")
+
+    print(f"Ignored Issues - All Sources", file=stream)
+    for incident in ignored_incidents:
+        print(incident, file=stream)
+    if len(ignored_incidents) == 0:
         print("-- None --", file=stream)
 
     return report_header

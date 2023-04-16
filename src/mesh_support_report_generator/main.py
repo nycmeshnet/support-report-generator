@@ -17,7 +17,7 @@ load_dotenv()
 
 
 def main():
-    uisp_incidents = uisp_outages.get_uisp_outage_lists()
+    uisp_incidents, uisp_ignored = uisp_outages.get_uisp_outage_lists()
     unifi_incidents = unifi_outages.get_unifi_outage_lists()
     ufiber_incidents_by_olt = {
         olt_name: get_ufiber_outage_lists(endpoint)
@@ -25,14 +25,24 @@ def main():
     }
 
     ufiber_incidents = []
-    for olt_name, incident_list in ufiber_incidents_by_olt.items():
-        for incident in incident_list:
+    ufiber_ignored = []
+    for olt_name, incident_lists in ufiber_incidents_by_olt.items():
+        for incident in incident_lists["reported"]:
             incident.site_name = olt_name
             ufiber_incidents.append(incident)
 
+        for incident in incident_lists["ignored"]:
+            ufiber_ignored.append(incident)
+
+    ignored_incidents = [*uisp_ignored, *ufiber_ignored]
+
     string_stream = StringIO()
     report_header = write_report(
-        string_stream, uisp_incidents, unifi_incidents, ufiber_incidents
+        string_stream,
+        uisp_incidents,
+        unifi_incidents,
+        ufiber_incidents,
+        ignored_incidents,
     )
 
     string_stream.seek(0)

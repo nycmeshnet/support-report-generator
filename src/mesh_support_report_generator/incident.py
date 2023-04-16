@@ -25,12 +25,14 @@ class Incident:
         event_time: datetime = None,
         site_name: str = None,
         metric_value: float = None,
+        ignored: bool = False,
     ):
         self.device_name = device_name
         self.site_name = site_name
         self.event_time = event_time
         self.incident_type = incident_type
         self.metric_value = metric_value
+        self.ignored = ignored
 
         if self.incident_type == IncidentType.POOR_SIGNAL and self.metric_value is None:
             raise ValueError("metric_value is required for IncidentType.POOR_SIGNAL")
@@ -72,7 +74,8 @@ class Incident:
             f"site_name={repr(self.site_name)}, "
             f"event_time={repr(self.event_time)}, "
             f"incident_type={repr(self.incident_type)}, "
-            f"metric_value={repr(self.metric_value)})"
+            f"metric_value={repr(self.metric_value)}, "
+            f"ignored={repr(self.ignored)})"
         )
 
     def __eq__(self, other):
@@ -84,4 +87,5 @@ class Incident:
             and self.event_time == other.event_time
             and self.incident_type == other.incident_type
             and self.metric_value == other.metric_value
+            and self.ignored == other.ignored
         )

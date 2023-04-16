@@ -72,11 +72,23 @@ def get_uisp_outage_lists():
         device_details = get_device(session, outage["device"]["id"])
         notes = device_details["meta"]["note"]
         if notes and IGNORE_OUTAGE_TOKEN in device_details["meta"]["note"]:
-            continue
-
-        if outage["device"]["site"]["id"] in UISP_IGNORE_SITE_IDS:
-            continue
+            notes = (
+                device_details["meta"]["note"]
+                .replace("\n", " ")
+                .replace(IGNORE_OUTAGE_TOKEN, "")
+                .strip()
+            )
+            incident.ignored = True
+            incident.site_name = notes if len(notes) > 0 else "Ignore token detected"
+            incident.event_time = None
+        elif outage["device"]["site"]["id"] in UISP_IGNORE_SITE_IDS:
+            incident.ignored = True
+            incident.site_name = outage["device"]["site"]["name"]
+            incident.event_time = None
 
         output_outages.append(incident)
 
-    return output_outages
+    return (
+        [incident for incident in output_outages if not incident.ignored],
+        [incident for incident in output_outages if incident.ignored],
+    )

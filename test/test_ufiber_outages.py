@@ -55,6 +55,8 @@ def mock_get_device_details():
 @freeze_time("2023-04-15")
 def test_get_ufiber_outage_lists(mock_login, mock_get_devices, mock_get_device_details):
     incidents = ufiber_outages.get_ufiber_outage_lists(MOCK_UFIBER_ENDPOINT)
+    reported_incidents = incidents["reported"]
+    ignored_incidents = incidents["ignored"]
 
     expected_incidents = [
         Incident(
@@ -73,4 +75,11 @@ def test_get_ufiber_outage_lists(mock_login, mock_get_devices, mock_get_device_d
         ),
     ]
 
-    assert incidents == expected_incidents
+    assert reported_incidents == expected_incidents
+    assert ignored_incidents == [
+        Incident(
+            device_name="DEVICE_NAME",
+            incident_type=IncidentType.OUTAGE,
+            ignored=True,
+        )
+    ]

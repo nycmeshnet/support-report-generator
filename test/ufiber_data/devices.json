@@ -410,5 +410,10 @@
     "connected": false,
     "dyingGasp": "unknown",
     "serial": "UBNT589ac6f4"
+  },
+  {
+    "connected": false,
+    "dyingGasp": "unknown",
+    "serial": "INJECT_IGNORE_TOKEN"
   }
 ]
