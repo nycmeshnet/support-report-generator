@@ -1,13 +1,12 @@
-import sys
 from datetime import datetime, timezone, timedelta
 import json
 import os
 
 from dateutil import parser
-import pytz as pytz
 from dotenv import load_dotenv
 import requests
 import mesh_support_report_generator.endpoints as endpoints
+from mesh_support_report_generator.incident import Incident, IncidentType
 
 load_dotenv()
 
@@ -49,12 +48,11 @@ def get_device(session: requests.Session, device_id: str):
     )
 
 
-def get_uisp_outage_lists(stream=sys.stdout):
+def get_uisp_outage_lists():
     session = requests.Session()
     session.headers = {"x-auth-token": login(session)}
     outages = get_outages(session, 1000, 1)
 
-    yesterday = datetime.now(tz=timezone.utc) - timedelta(hours=24.1)
     last_week = datetime.now(tz=timezone.utc) - timedelta(days=7)
     new_outages = [
         outage
@@ -62,26 +60,22 @@ def get_uisp_outage_lists(stream=sys.stdout):
         if parser.parse(outage["startTimestamp"]) > last_week and outage["ongoing"]
     ]
 
-    not_ignored_outages = []
+    output_outages = []
     for outage in new_outages:
+        incident = Incident(
+            device_name=outage["device"]["name"],
+            incident_type=IncidentType.OUTAGE,
+            event_time=parser.parse(outage["startTimestamp"]),
+        )
+
         device_details = get_device(session, outage["device"]["id"])
         notes = device_details["meta"]["note"]
         if notes and IGNORE_OUTAGE_TOKEN in device_details["meta"]["note"]:
             continue
-        if device_details["identification"]["site"]["id"] in UISP_IGNORE_SITE_IDS:
+
+        if outage["device"]["site"]["id"] in UISP_IGNORE_SITE_IDS:
             continue
-        not_ignored_outages.append(outage)
 
-    outages_to_print = not_ignored_outages
+        output_outages.append(incident)
 
-    print("UISP - Currently In Outage (new last 7 days)", file=stream)
-    for outage in outages_to_print:
-        outage_time = (
-            parser.parse(outage["startTimestamp"])
-            .astimezone(tz=pytz.timezone("US/Eastern"))
-            .strftime("%Y-%m-%d @ %H:%M")
-        )
-        outage_status = f"(offline since {outage_time})"
-        print(f'{outage["device"]["name"]} {outage_status}', file=stream)
-    if len(outages_to_print) == 0:
-        print("-- None --", file=stream)
+    return output_outages

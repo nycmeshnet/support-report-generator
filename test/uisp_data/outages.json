@@ -1,0 +1,497 @@
+[
+    {
+    "id": "8efb4a91-9808-4c1a-b764-a55ea471684f",
+    "startTimestamp": "2023-03-15T22:21:22.200Z",
+    "endTimestamp": null,
+    "aggregatedTime": 6449874,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "277a1e94-6cc5-4391-aa6d-3b8b2ceb7319",
+      "site": {
+        "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+        "name": "Stations-Saratoga-1340",
+        "status": "unknown",
+        "type": "endpoint",
+        "parent": {
+          "id": "ab36d100-96a1-4473-91fb-14e9fd6d4a0f",
+          "name": "Vernon - 5916",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": "18:e8:29:8c:c1:15",
+      "ip": "10.70.131.177/24",
+      "name": "nycmesh-lbe-9999",
+      "serialNumber": null,
+      "firmwareVersion": "8.7.1",
+      "model": "LBE-5AC-Gen2",
+      "role": "station",
+      "modelName": "LiteBeam 5AC",
+      "platformId": "WA",
+      "platformName": "WA",
+      "type": "airMax",
+      "category": "wireless",
+      "authorized": true,
+      "displayName": "nycmesh-lbe-4018"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-lbe-4018"
+    },
+    "site": {
+      "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+      "name": "Stations-Saratoga-1340",
+      "status": "unknown",
+      "type": "endpoint",
+      "parent": {
+        "id": "ab36d100-96a1-4473-91fb-14e9fd6d4a0f",
+        "name": "Vernon - 5916",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "8efb4a91-9808-4c1a-b764-a55ea471684f",
+    "startTimestamp": "2023-04-15T22:21:22.200Z",
+    "endTimestamp": null,
+    "aggregatedTime": 6449874,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "277a1e94-6cc5-4391-aa6d-3b8b2ceb7319",
+      "site": {
+        "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+        "name": "Stations-Saratoga-1340",
+        "status": "unknown",
+        "type": "endpoint",
+        "parent": {
+          "id": "ab36d100-96a1-4473-91fb-14e9fd6d4a0f",
+          "name": "Vernon - 5916",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": "18:e8:29:8c:c1:15",
+      "ip": "10.70.131.177/24",
+      "name": "nycmesh-lbe-4018",
+      "serialNumber": null,
+      "firmwareVersion": "8.7.1",
+      "model": "LBE-5AC-Gen2",
+      "role": "station",
+      "modelName": "LiteBeam 5AC",
+      "platformId": "WA",
+      "platformName": "WA",
+      "type": "airMax",
+      "category": "wireless",
+      "authorized": true,
+      "displayName": "nycmesh-lbe-4018"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-lbe-4018"
+    },
+    "site": {
+      "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+      "name": "Stations-Saratoga-1340",
+      "status": "unknown",
+      "type": "endpoint",
+      "parent": {
+        "id": "ab36d100-96a1-4473-91fb-14e9fd6d4a0f",
+        "name": "Vernon - 5916",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "e8c3aa38-b4ad-4f8f-838f-2fe257e12588",
+    "startTimestamp": "2023-04-15T02:29:53.391Z",
+    "endTimestamp": null,
+    "aggregatedTime": 77938683,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "a36fdb97-aecf-4a64-a493-0bd3db4d8761",
+      "site": {
+        "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+        "name": "Stations-Saratoga-1340",
+        "status": "unknown",
+        "type": "endpoint",
+        "parent": {
+          "id": "ab36d100-96a1-4473-91fb-14e9fd6d4a0f",
+          "name": "Vernon - 5916",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": null,
+      "ip": "10.100.84.65",
+      "name": "nycmesh-4433-omni",
+      "serialNumber": null,
+      "firmwareVersion": null,
+      "model": "UNKNOWN",
+      "role": "router",
+      "modelName": "OmniTik",
+      "platformId": "UNKNOWN",
+      "platformName": "UNKNOWN",
+      "type": "blackBox",
+      "category": null,
+      "authorized": true,
+      "displayName": "nycmesh-4433-omni"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-4433-omni"
+    },
+    "site": {
+      "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+      "name": "Stations-Saratoga-1340",
+      "status": "unknown",
+      "type": "endpoint",
+      "parent": {
+        "id": "ab36d100-96a1-4473-91fb-14e9fd6d4a0f",
+        "name": "Vernon - 5916",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "7cec1fdc-5bf8-4343-8c06-f15f74afc3ef",
+    "startTimestamp": "2023-04-14T20:23:42.059Z",
+    "endTimestamp": null,
+    "aggregatedTime": 99910015,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "d2ee0fd6-1303-46e8-b8d0-ddf63a4a9a6f",
+      "site": {
+        "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+        "name": "Grand Street - 1934",
+        "status": "unknown",
+        "type": "site",
+        "parent": {
+          "id": "0bb1f264-588b-438e-8a21-d14b9e612659",
+          "name": "8th Ave - 10",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": "04:18:d6:34:9d:fa",
+      "ip": "10.70.188.112/24",
+      "name": "nycmesh-meshroom-nbe-1934",
+      "serialNumber": null,
+      "firmwareVersion": "6.3.6",
+      "model": "N5B-19",
+      "role": "station",
+      "modelName": "NanoBeam M5 19",
+      "platformId": "XW",
+      "platformName": "XW",
+      "type": "airMax",
+      "category": "wireless",
+      "authorized": true,
+      "displayName": "nycmesh-meshroom-nbe-1934"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-meshroom-nbe-1934"
+    },
+    "site": {
+      "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+      "name": "Grand Street - 1934",
+      "status": "unknown",
+      "type": "site",
+      "parent": {
+        "id": "0bb1f264-588b-438e-8a21-d14b9e612659",
+        "name": "8th Ave - 10",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "befbbab9-2b99-42b2-b329-5d7f1b5ce0de",
+    "startTimestamp": "2023-04-13T14:09:17.892Z",
+    "endTimestamp": null,
+    "aggregatedTime": 208774183,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "916967b6-7a2b-4e9a-8004-ecf0f125331c",
+      "site": {
+        "id": "5c4e0488-a3e7-4931-b393-753a589de86b",
+        "name": "Stations-PH-3461",
+        "status": "unknown",
+        "type": "endpoint",
+        "parent": {
+          "id": "7159dead-71ff-46e9-982c-f6f91d6d7a59",
+          "name": "Prospect Heights - 3461",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": null,
+      "ip": "10.96.69.193",
+      "name": "nycmesh-279-omni",
+      "serialNumber": null,
+      "firmwareVersion": null,
+      "model": "UNKNOWN",
+      "role": "router",
+      "modelName": "OmniTik",
+      "platformId": "UNKNOWN",
+      "platformName": "UNKNOWN",
+      "type": "blackBox",
+      "category": null,
+      "authorized": true,
+      "displayName": "nycmesh-279-omni"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-279-omni"
+    },
+    "site": {
+      "id": "5c4e0488-a3e7-4931-b393-753a589de86b",
+      "name": "Stations-PH-3461",
+      "status": "unknown",
+      "type": "endpoint",
+      "parent": {
+        "id": "7159dead-71ff-46e9-982c-f6f91d6d7a59",
+        "name": "Prospect Heights - 3461",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "6b8d09a3-7c70-4bb4-bc12-f1cbd621afcb",
+    "startTimestamp": "2023-04-13T03:48:26.364Z",
+    "endTimestamp": null,
+    "aggregatedTime": 246025711,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "08bb2190-5b9d-4db8-8a0b-04f7045cd718",
+      "site": {
+        "id": "5c4e0488-a3e7-4931-b393-753a589de86b",
+        "name": "Stations-PH-3461",
+        "status": "unknown",
+        "type": "endpoint",
+        "parent": {
+          "id": "7159dead-71ff-46e9-982c-f6f91d6d7a59",
+          "name": "Prospect Heights - 3461",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": null,
+      "ip": "10.69.52.118",
+      "name": "nycmesh-5218-sxt",
+      "serialNumber": null,
+      "firmwareVersion": null,
+      "model": "UNKNOWN",
+      "role": "router",
+      "modelName": "SXT",
+      "platformId": "UNKNOWN",
+      "platformName": "UNKNOWN",
+      "type": "blackBox",
+      "category": null,
+      "authorized": true,
+      "displayName": "nycmesh-5218-sxt"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-5218-sxt"
+    },
+    "site": {
+      "id": "5c4e0488-a3e7-4931-b393-753a589de86b",
+      "name": "Stations-PH-3461",
+      "status": "unknown",
+      "type": "endpoint",
+      "parent": {
+        "id": "7159dead-71ff-46e9-982c-f6f91d6d7a59",
+        "name": "Prospect Heights - 3461",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "8e767c83-d9df-47cb-8fc8-d64a53ed5c31",
+    "startTimestamp": "2023-04-09T21:48:41.111Z",
+    "endTimestamp": null,
+    "aggregatedTime": 526810964,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "3f996a87-943b-47c8-86be-a65249976d73",
+      "site": {
+        "id": "7c75680f-31dd-441f-a61a-0228d7b57a91",
+        "name": "Grand Street - 1933",
+        "status": "unknown",
+        "type": "site",
+        "parent": {
+          "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+          "name": "Grand Street - 1934",
+          "status": "unknown",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": null,
+      "ip": "10.70.188.5",
+      "name": "nycmesh-1933-meshsvc",
+      "serialNumber": null,
+      "firmwareVersion": null,
+      "model": "UNKNOWN",
+      "role": "server",
+      "modelName": "SuperMicro",
+      "platformId": "UNKNOWN",
+      "platformName": "UNKNOWN",
+      "type": "blackBox",
+      "category": null,
+      "authorized": true,
+      "displayName": "nycmesh-1933-meshsvc"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-1933-meshsvc"
+    },
+    "site": {
+      "id": "7c75680f-31dd-441f-a61a-0228d7b57a91",
+      "name": "Grand Street - 1933",
+      "status": "unknown",
+      "type": "site",
+      "parent": {
+        "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+        "name": "Grand Street - 1934",
+        "status": "unknown",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "8e767c83-d9df-47cb-8fc8-d64a53ed5c31",
+    "startTimestamp": "2023-04-09T21:48:41.111Z",
+    "endTimestamp": null,
+    "aggregatedTime": 526810964,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "3f996a87-943b-47c8-86be-a65249976d73",
+      "site": {
+        "id": "GRAVEYARD_SITE_ID",
+        "name": "Grand Street - 1933",
+        "status": "unknown",
+        "type": "site",
+        "parent": {
+          "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+          "name": "Grand Street - 1934",
+          "status": "unknown",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": null,
+      "ip": "10.70.188.5",
+      "name": "nycmesh-yyyy-test-dev",
+      "serialNumber": null,
+      "firmwareVersion": null,
+      "model": "UNKNOWN",
+      "role": "server",
+      "modelName": "SuperMicro",
+      "platformId": "UNKNOWN",
+      "platformName": "UNKNOWN",
+      "type": "blackBox",
+      "category": null,
+      "authorized": true,
+      "displayName": "nycmesh-1933-meshsvc"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-1933-meshsvc"
+    },
+    "site": {
+      "id": "7c75680f-31dd-441f-a61a-0228d7b57a91",
+      "name": "Grand Street - 1933",
+      "status": "unknown",
+      "type": "site",
+      "parent": {
+        "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+        "name": "Grand Street - 1934",
+        "status": "unknown",
+        "type": "site",
+        "parent": null
+      }
+    }
+  },
+  {
+    "id": "INJECT_IGNORE_TOKEN",
+    "startTimestamp": "2023-04-09T21:48:41.111Z",
+    "endTimestamp": null,
+    "aggregatedTime": 526810964,
+    "ongoing": true,
+    "type": "outage",
+    "inProgress": true,
+    "device": {
+      "id": "INJECT_IGNORE_TOKEN",
+      "site": {
+        "id": "6195522b-8sfd6-4886-a485-4ee84d40540f",
+        "name": "Grand Street - 1933",
+        "status": "unknown",
+        "type": "site",
+        "parent": {
+          "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+          "name": "Grand Street - 1934",
+          "status": "unknown",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "mac": null,
+      "ip": "10.70.188.5",
+      "name": "nycmesh-yyyy-test-dev",
+      "serialNumber": null,
+      "firmwareVersion": null,
+      "model": "UNKNOWN",
+      "role": "server",
+      "modelName": "SuperMicro",
+      "platformId": "UNKNOWN",
+      "platformName": "UNKNOWN",
+      "type": "blackBox",
+      "category": null,
+      "authorized": true,
+      "displayName": "nycmesh-1933-meshsvc"
+    },
+    "deviceMetadata": {
+      "alias": "nycmesh-1933-meshsvc"
+    },
+    "site": {
+      "id": "7c75680f-31dd-441f-a61a-0228d7b57a91",
+      "name": "Grand Street - 1933",
+      "status": "unknown",
+      "type": "site",
+      "parent": {
+        "id": "6195522b-8d36-4886-a485-4eeb3d40540f",
+        "name": "Grand Street - 1934",
+        "status": "unknown",
+        "type": "site",
+        "parent": null
+      }
+    }
+  }
+]

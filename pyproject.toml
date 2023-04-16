@@ -12,7 +12,8 @@ dependencies = [
 [project.optional-dependencies]
 test = [
     "pytest >= 6",
-    "coverage"
+    "coverage",
+    "freezegun"
 ]
 
 [project.scripts]
