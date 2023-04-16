@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "5ae108a2ef0a99257287586b",
+    "name": "default",
+    "desc": "Default",
+    "attr_hidden_id": "default",
+    "attr_no_delete": true,
+    "anonymous_id": "e7794004-3b29-45b2-94c6-4c134a21d337",
+    "role": "readonly"
+  },
+  {
+    "_id": "5aeb8fd452b13b2da58898f4",
+    "desc": "1340 - Saratoga",
+    "name": "ic4c8oln",
+    "anonymous_id": "79f3417e-b73f-4046-b07b-63aec179179d",
+    "role": "readonly"
+  },
+  {
+    "_id": "608d87ed46e0fb001a08e3e6",
+    "anonymous_id": "d1f3900d-b6c5-4f1a-a4cf-d3c656e05241",
+    "desc": "5916 - Vernon",
+    "name": "cod8a0z0",
+    "role": "readonly"
+  },
+  {
+    "_id": "6271f6f646e0fb001a5ebde2",
+    "anonymous_id": "43c6137a-f0ed-4755-97f5-1629a2de231e",
+    "desc": "1934 - Grand Public",
+    "name": "cwzyxi5e",
+    "role": "readonly"
+  }
+]

@@ -1,12 +1,11 @@
-import sys
 from datetime import datetime, timezone, timedelta
 import json
 import os
 
-import pytz as pytz
 from dotenv import load_dotenv
 import requests
 import mesh_support_report_generator.endpoints as endpoints
+from mesh_support_report_generator.incident import Incident, IncidentType
 
 load_dotenv()
 
@@ -40,7 +39,7 @@ def get_devices(session: requests.Session, site_id: str):
     )["data"]
 
 
-def get_unifi_outage_lists(stream=sys.stdout):
+def get_unifi_outage_lists():
     session = requests.Session()
     login(session)
     sites = [{"name": site["desc"], "id": site["name"]} for site in list_sites(session)]
@@ -70,24 +69,15 @@ def get_unifi_outage_lists(stream=sys.stdout):
         for device in devices_full_data
     ]
 
-    yesterday = datetime.now(tz=timezone.utc) - timedelta(hours=24.1)
     last_week = datetime.now(tz=timezone.utc) - timedelta(days=7)
-    current_outages = [device for device in devices_simplified if device["in_outage"]]
 
-    new_outages = [
-        device
+    return [
+        Incident(
+            incident_type=IncidentType.OUTAGE,
+            device_name=device["name"],
+            event_time=device["most_recent_disconnect_time"],
+            site_name=device["site"],
+        )
         for device in devices_simplified
         if device["in_outage"] and device["most_recent_disconnect_time"] > last_week
     ]
-
-    print("UNIFI - Currently In Outage (new last 7 days)", file=stream)
-    for device in new_outages:
-        outage_time = (
-            device["most_recent_disconnect_time"]
-            .astimezone(tz=pytz.timezone("US/Eastern"))
-            .strftime("%Y-%m-%d @ %H:%M")
-        )
-        outage_status = f"(offline since {outage_time})"
-        print(f"{device['site']} ({device['name']}) {outage_status}", file=stream)
-    if len(new_outages) == 0:
-        print("-- None --", file=stream)
