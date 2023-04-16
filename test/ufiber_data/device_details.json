@@ -1,0 +1,84 @@
+{
+  "adminPassword": "",
+  "bandwidthLimit": {
+    "download": {
+      "enabled": false,
+      "limit": 1
+    },
+    "upload": {
+      "enabled": false,
+      "limit": 1
+    }
+  },
+  "bridgeMode": {
+    "ports": [
+      {
+        "includeVLANs": [],
+        "nativeVLAN": 11,
+        "port": "1"
+      }
+    ]
+  },
+  "countryListId": "1",
+  "enabled": true,
+  "lanAddress": "192.168.1.1/24",
+  "lanProvisioned": true,
+  "mode": "bridge",
+  "model": "Loco",
+  "name": "DEVICE_NAME",
+  "notes": "",
+  "ports": [
+    {
+      "id": "1",
+      "speed": "auto"
+    }
+  ],
+  "routerMode": {
+    "dhcpLeaseTime": 600,
+    "dhcpPool": {
+      "rangeStart": "192.168.1.10",
+      "rangeStop": "192.168.1.250"
+    },
+    "dhcpRelay": "",
+    "dhcpServerMode": "enabled",
+    "dnsProxyEnabled": true,
+    "dnsResolvers": [],
+    "firewallEnabled6": true,
+    "gateway": "",
+    "gateway6": "",
+    "ipv6Enabled": false,
+    "lanAddress6": "",
+    "lanMode6": "auto",
+    "nat": {
+      "ftp": true,
+      "pptp": true,
+      "rtsp": true,
+      "sip": false
+    },
+    "portForwards": [],
+    "pppoeMode": "auto",
+    "pppoePassword": "",
+    "pppoeUser": "",
+    "routerAdvertisement": {
+      "mode": "auto",
+      "prefix": ""
+    },
+    "upnpEnabled": false,
+    "wanAccessBlocked": true,
+    "wanAddress": "",
+    "wanAddress6": "",
+    "wanDnsResolvers": [],
+    "wanMode": "dhcp",
+    "wanMode6": "slaac",
+    "wanVLAN": 1
+  },
+  "serial": "UBNT589ac6f4",
+  "services": {
+    "httpPort": 80,
+    "sshEnabled": false,
+    "sshPort": 22,
+    "telnetEnabled": false,
+    "telnetPort": 23,
+    "ubntDiscoveryEnabled": true
+  }
+}

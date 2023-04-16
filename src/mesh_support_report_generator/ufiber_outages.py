@@ -1,11 +1,10 @@
-import sys
-from datetime import datetime, timezone, timedelta
 import json
 import os
 
 from dotenv import load_dotenv
 import requests
 import mesh_support_report_generator.endpoints as endpoints
+from mesh_support_report_generator.incident import Incident, IncidentType
 
 load_dotenv()
 
@@ -44,62 +43,64 @@ def get_device_details(session: requests.Session, ufiber_base_url: str, device_i
     )
 
 
-def get_ufiber_outage_lists(stream=sys.stdout):
-    poor_signal_devices = []
-    disconnected_devices = []
-    poor_experience_devices = []
+def create_incident(
+    device: dict,
+    incident_type: IncidentType,
+    session: requests.Session,
+    ufiber_endpoint: str,
+):
+    device_details = get_device_details(session, ufiber_endpoint, device["serial"])
+    device_notes = device_details["notes"]
+    if not device_notes or IGNORE_OUTAGE_TOKEN not in device_notes:
+        if incident_type == IncidentType.OUTAGE:
+            return Incident(
+                device_name=device_details["name"],
+                incident_type=IncidentType.OUTAGE,
+            )
+        elif incident_type == IncidentType.POOR_EXPERIENCE:
+            return Incident(
+                device_name=device_details["name"],
+                incident_type=IncidentType.POOR_EXPERIENCE,
+                metric_value=device.get("experience", "N/A"),
+            )
+        elif incident_type == IncidentType.POOR_SIGNAL:
+            return Incident(
+                device_name=device_details["name"],
+                incident_type=IncidentType.POOR_SIGNAL,
+                metric_value=device["rxPower"],
+            )
 
-    for ufiber_endpoint in endpoints.UFIBER_BASES:
-        session = requests.Session()
-        session.headers = {"x-auth-token": login(session, ufiber_endpoint)}
-        devices = get_devices(session, ufiber_endpoint)
+    return None
 
-        for device in devices:
-            if not device["connected"]:
-                device_details = get_device_details(
-                    session, ufiber_endpoint, device["serial"]
+
+def get_ufiber_outage_lists(ufiber_endpoint):
+    incidents = []
+
+    session = requests.Session()
+    session.headers = {"x-auth-token": login(session, ufiber_endpoint)}
+    devices = get_devices(session, ufiber_endpoint)
+
+    for device in devices:
+        if not device["connected"]:
+            incidents.append(
+                create_incident(device, IncidentType.OUTAGE, session, ufiber_endpoint)
+            )
+            continue
+
+        if device.get("experience", 0) < MIN_EXPERIENCE:
+            incidents.append(
+                create_incident(
+                    device, IncidentType.POOR_EXPERIENCE, session, ufiber_endpoint
                 )
-                device_notes = device_details["notes"]
-                if not device_notes or IGNORE_OUTAGE_TOKEN not in device_notes:
-                    disconnected_devices.append(device_details)
-                continue
-            if device.get("rxPower", 0) < MIN_RX_POWER:
-                poor_signal_devices.append(
-                    {
-                        **get_device_details(
-                            session, ufiber_endpoint, device["serial"]
-                        ),
-                        **device,
-                    }
+            )
+            continue
+
+        if device.get("rxPower", 0) < MIN_RX_POWER:
+            incidents.append(
+                create_incident(
+                    device, IncidentType.POOR_SIGNAL, session, ufiber_endpoint
                 )
+            )
+            continue
 
-            if device.get("experience", 0) < MIN_EXPERIENCE:
-                poor_experience_devices.append(
-                    {
-                        **get_device_details(
-                            session, ufiber_endpoint, device["serial"]
-                        ),
-                        **device,
-                    }
-                )
-
-    yesterday = datetime.now(tz=timezone.utc) - timedelta(hours=24.1)
-    last_week = datetime.now(tz=timezone.utc) - timedelta(days=7)
-
-    print("UFIBER - Currently In Outage", file=stream)
-    for device in disconnected_devices:
-        print(f"{device['name']}", file=stream)
-    if len(disconnected_devices) == 0:
-        print("-- None --", file=stream)
-
-    print(f"\n\nUFIBER - Poor Signal (< {MIN_RX_POWER} dBm)", file=stream)
-    for device in poor_signal_devices:
-        print(f"{device['name']} ({device['rxPower']} dBm)", file=stream)
-    if len(poor_signal_devices) == 0:
-        print("-- None --", file=stream)
-
-    print(f"\n\nUFIBER - Poor Experience (< {MIN_EXPERIENCE}%)", file=stream)
-    for device in poor_experience_devices:
-        print(f"{device['name']} ({device.get('experience', 'N/A')}%)", file=stream)
-    if len(poor_experience_devices) == 0:
-        print("-- None --", file=stream)
+    return [incident for incident in incidents if incident is not None]

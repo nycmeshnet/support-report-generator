@@ -1,0 +1,414 @@
+[
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 10065373,
+    "distance": 286,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 25.5979995727539,
+    "mac": "78:45:58:06:3c:9b",
+    "oltPort": 2,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -18.18,
+    "serial": "UBNT58063c9b",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 45.0
+      },
+      "uptime": 10065435,
+      "voltage": 3.40000009536743
+    },
+    "txPower": 1.758,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 814929,
+    "distance": 363,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 21.8540000915527,
+    "mac": "78:45:58:06:3c:a5",
+    "oltPort": 4,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -40.13,
+    "serial": "UBNT58063ca5",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 57.0
+      },
+      "uptime": 1536105,
+      "voltage": 3.35999989509583
+    },
+    "txPower": 0.386,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 814039,
+    "distance": 308,
+    "error": "",
+    "experience": 56,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 26.3980007171631,
+    "mac": "78:45:58:06:41:94",
+    "oltPort": 3,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -21.674,
+    "serial": "UBNT58064194",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 50.0
+      },
+      "uptime": 2082627,
+      "voltage": 3.35999989509583
+    },
+    "txPower": 2.108,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 11012273,
+    "distance": 311,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 22.238000869751,
+    "mac": "78:45:58:06:41:f1",
+    "oltPort": 2,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -20.0,
+    "serial": "UBNT580641f1",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 53.0
+      },
+      "uptime": 11012339,
+      "voltage": 3.40000009536743
+    },
+    "txPower": 2.314,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 5464867,
+    "distance": 91,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 30.3339996337891,
+    "mac": "78:45:58:06:42:9f",
+    "oltPort": 6,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -25.376,
+    "serial": "UBNT5806429f",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 53.0
+      },
+      "uptime": 5464938,
+      "voltage": 3.38000011444092
+    },
+    "txPower": 1.484,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 275503,
+    "distance": 281,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 24.253999710083,
+    "mac": "78:45:58:06:42:c8",
+    "oltPort": 1,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -25.85,
+    "serial": "UBNT580642c8",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 45.0
+      },
+      "uptime": 275565,
+      "voltage": 3.29999995231628
+    },
+    "txPower": 1.302,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 814919,
+    "distance": 343,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 25.5020008087158,
+    "mac": "78:45:58:06:42:dc",
+    "oltPort": 4,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -19.624,
+    "serial": "UBNT580642dc",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 57.0
+      },
+      "uptime": 1532123,
+      "voltage": 3.1800000667572
+    },
+    "txPower": 1.324,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 814928,
+    "distance": 338,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 29.1180000305176,
+    "mac": "78:45:58:06:42:dd",
+    "oltPort": 4,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -21.61,
+    "serial": "UBNT580642dd",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 52.0
+      },
+      "uptime": 3144516,
+      "voltage": 3.33999991416931
+    },
+    "txPower": 1.67,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 10118213,
+    "distance": 291,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 26.7180004119873,
+    "mac": "78:45:58:06:42:e5",
+    "oltPort": 2,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -21.134,
+    "serial": "UBNT580642e5",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 48.0
+      },
+      "uptime": 10118276,
+      "voltage": 3.27999997138977
+    },
+    "txPower": 0.722,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 814038,
+    "distance": 318,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 24.5419998168945,
+    "mac": "78:45:58:06:42:eb",
+    "oltPort": 3,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -20.086,
+    "serial": "UBNT580642eb",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 54.0
+      },
+      "uptime": 1532006,
+      "voltage": 3.44000005722046
+    },
+    "txPower": 0.69,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "authorized": true,
+    "connected": true,
+    "connectionTime": 814929,
+    "distance": 341,
+    "error": "",
+    "experience": 100,
+    "firmwareHash": "2361-b2d",
+    "firmwareVersion": "v4.4.2",
+    "laserBias": 27.1340007781982,
+    "mac": "78:45:58:9a:c0:38",
+    "oltPort": 4,
+    "ports": [
+      {
+        "id": "1",
+        "plugged": true,
+        "speed": "1000-full"
+      }
+    ],
+    "router": {},
+    "rxPower": -19.172,
+    "serial": "UBNT589ac038",
+    "system": {
+      "cpu": 3,
+      "mem": 52,
+      "temperature": {
+        "cpu": 52.0
+      },
+      "uptime": 1532047,
+      "voltage": 3.40000009536743
+    },
+    "txPower": 0.598,
+    "upgradeStatus": {
+      "failureReason": "",
+      "status": "finished"
+    }
+  },
+  {
+    "connected": false,
+    "dyingGasp": "unknown",
+    "serial": "UBNT589ac6f4"
+  }
+]
