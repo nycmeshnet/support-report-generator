@@ -58,6 +58,20 @@ then invoke the tool with the CLI command:
 mesh-support-report
 ```
 
+## Running the unit tests
+
+Follow the instructions under "Usage" above, to clone a local copy of this application and activate
+the virtual environment. Then installing the test dependencies with:
+```sh
+pip install -e ".[test]"
+```
+
+Finally, invoke the test suite using pytest:
+```
+pytest test/
+```
+
+
 ## Building for AWS Lambda
 
 This package is set up to be easily run via [AWS Lambda](https://aws.amazon.com/lambda/). Create
