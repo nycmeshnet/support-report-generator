@@ -6,11 +6,6 @@ import pytz
 from mesh_support_report_generator.incident import Incident, IncidentType
 
 
-def test_init_outage_missing_event_time():
-    with pytest.raises(ValueError):
-        Incident("device_name", IncidentType.OUTAGE)
-
-
 def test_init_poor_signal_missing_metric_value():
     with pytest.raises(ValueError):
         Incident("device_name", IncidentType.POOR_SIGNAL)
@@ -27,6 +22,11 @@ def test_str_outage_with_site_name():
         "device_name", IncidentType.OUTAGE, event_time, site_name="site_name"
     )
     assert str(incident) == "device_name (site_name) (offline since 2022-01-01 @ 00:00)"
+
+
+def test_str_outage_without_time():
+    incident = Incident("device_name", IncidentType.OUTAGE)
+    assert str(incident) == "device_name"
 
 
 def test_str_outage_without_site_name():

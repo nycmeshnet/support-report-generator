@@ -32,9 +32,6 @@ class Incident:
         self.incident_type = incident_type
         self.metric_value = metric_value
 
-        if self.incident_type == IncidentType.OUTAGE and self.event_time is None:
-            raise ValueError("event_time is required for IncidentType.OUTAGE")
-
         if self.incident_type == IncidentType.POOR_SIGNAL and self.metric_value is None:
             raise ValueError("metric_value is required for IncidentType.POOR_SIGNAL")
 
@@ -52,16 +49,18 @@ class Incident:
         if self.site_name:
             output += f" ({self.site_name})"
 
-        if self.incident_type == IncidentType.OUTAGE:
+        if self.event_time:
             # Convert event time to US Eastern time zone
             eastern = pytz.timezone("US/Eastern")
             event_time_eastern = self.event_time.astimezone(eastern)
             output += (
                 f" (offline since {event_time_eastern.strftime('%Y-%m-%d @ %H:%M')})"
             )
-        elif self.incident_type == IncidentType.POOR_EXPERIENCE:
+
+        if self.incident_type == IncidentType.POOR_EXPERIENCE:
             output += f" ({self.metric_value}%)"
-        elif self.incident_type == IncidentType.POOR_SIGNAL:
+
+        if self.incident_type == IncidentType.POOR_SIGNAL:
             output += f" ({self.metric_value} dBm)"
 
         return output
