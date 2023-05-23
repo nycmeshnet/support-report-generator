@@ -57,33 +57,28 @@ def test_get_uisp_outage_lists(mock_login, mock_get_outages, mock_get_device):
     incidents, ignored_incidents = uisp_outages.get_uisp_outage_lists()
     expected_incidents = [
         Incident(
-            device_name="nycmesh-lbe-4018",
-            event_time=datetime(2023, 4, 15, 22, 21, 22, 200000, tzinfo=tzutc()),
+            device_name="nycmesh-426-sxt1",
+            event_time=datetime(2023, 5, 23, 22, 34, 56, 888000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
         Incident(
-            device_name="nycmesh-4433-omni",
-            event_time=datetime(2023, 4, 15, 2, 29, 53, 391000, tzinfo=tzutc()),
+            device_name="nycmesh-lbe-1327",
+            event_time=datetime(2023, 5, 23, 22, 34, 51, 598000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
         Incident(
-            device_name="nycmesh-meshroom-nbe-1934",
-            event_time=datetime(2023, 4, 14, 20, 23, 42, 59000, tzinfo=tzutc()),
+            device_name="nycmesh-234-omni",
+            event_time=datetime(2023, 5, 23, 14, 57, 15, 356000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
         Incident(
-            device_name="nycmesh-279-omni",
-            event_time=datetime(2023, 4, 13, 14, 9, 17, 892000, tzinfo=tzutc()),
+            device_name="nycmesh-464-omni",
+            event_time=datetime(2023, 5, 23, 3, 42, 18, 394000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
         Incident(
-            device_name="nycmesh-5218-sxt",
-            event_time=datetime(2023, 4, 13, 3, 48, 26, 364000, tzinfo=tzutc()),
-            incident_type=IncidentType.OUTAGE,
-        ),
-        Incident(
-            device_name="nycmesh-1933-meshsvc",
-            event_time=datetime(2023, 4, 9, 21, 48, 41, 111000, tzinfo=tzutc()),
+            device_name="nycmesh-lbe-464",
+            event_time=datetime(2023, 5, 23, 3, 26, 23, 283000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
     ]

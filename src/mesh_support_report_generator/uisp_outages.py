@@ -58,7 +58,7 @@ def get_uisp_outage_lists():
     new_outages = [
         outage
         for outage in outages["items"]
-        if parser.parse(outage["startTimestamp"]) > last_week and outage["ongoing"]
+        if parser.parse(outage["startTimestamp"]) > last_week and outage["inProgress"]
     ]
 
     output_outages = []
