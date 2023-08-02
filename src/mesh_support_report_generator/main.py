@@ -24,6 +24,15 @@ def main():
         for olt_name, endpoint in UFIBER_BASES.items()
     }
 
+    ########## HACKY PATCH TO ACCOUNT FOR GRAND ST CONSTRUCTION WORK ###########
+    new_olt_real_incidents = [
+        incident
+        for incident in ufiber_incidents_by_olt["nycmesh-1934-olt1"]["reported"]
+        if "410" not in incident.device_name
+    ]
+    ufiber_incidents_by_olt["nycmesh-1934-olt1"]["reported"] = new_olt_real_incidents
+    ########## HACKY PATCH TO ACCOUNT FOR GRAND ST CONSTRUCTION WORK ###########
+
     ufiber_incidents = []
     ufiber_ignored = []
     for olt_name, incident_lists in ufiber_incidents_by_olt.items():

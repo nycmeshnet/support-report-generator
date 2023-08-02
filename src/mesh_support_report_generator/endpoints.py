@@ -11,6 +11,7 @@ UNIFI_LIST_DEVICES = UNIFI_BASE + "/s/%s/stat/device"
 UFIBER_BASES = {
     "nycmesh-1932-olt3": "https://10.70.188.2/api/v1.0",
     "nycmesh-1932-olt2": "https://10.70.188.3/api/v1.0",
+    "nycmesh-1934-olt1": "https://10.70.188.6/api/v1.0",
 }
 UFIBER_LOGIN_SUFFIX = "/user/login"
 UFIBER_LIST_DEVICES_SUFFIX = "/gpon/onus"
