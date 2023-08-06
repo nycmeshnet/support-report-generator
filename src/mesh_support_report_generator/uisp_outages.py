@@ -85,6 +85,10 @@ def get_uisp_outage_lists():
             incident.ignored = True
             incident.site_name = outage["device"]["site"]["name"]
             incident.event_time = None
+        elif device_details["meta"]["maintenance"]:
+            incident.ignored = True
+            incident.event_time = None
+            incident.site_name = "maintenance mode"
 
         output_outages.append(incident)
 

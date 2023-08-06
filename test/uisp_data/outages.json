@@ -378,5 +378,61 @@
       },
       "affectedDevices": 0,
       "children": []
+    },
+    {
+      "id": "INJECT_MAINTENANCE_MODE",
+      "startTimestamp": "2023-05-22T14:48:33.042Z",
+      "endTimestamp": null,
+      "aggregatedTime": 114772080,
+      "type": "outage",
+      "inProgress": true,
+      "device": {
+        "id": "INJECT_MAINTENANCE_MODE",
+        "site": {
+          "id": "325e1c4d-61e1-45fa-86f5-3e22db820475",
+          "name": "Stations-SN1-227",
+          "status": "unknown",
+          "type": "endpoint",
+          "parent": {
+            "id": "5e15a675-d3cc-4db2-94e9-2b32bb5c87ce",
+            "name": "SN1 - 227",
+            "status": "active",
+            "type": "site",
+            "parent": null
+          }
+        },
+        "mac": "80:2a:a8:9f:48:b5",
+        "ip": "10.70.74.107/24",
+        "name": "nycmesh-zzzz-test-dev",
+        "serialNumber": null,
+        "firmwareVersion": "2.0.9-hotfix.4",
+        "model": "EP-R6",
+        "role": "router",
+        "modelName": "EdgePoint R6",
+        "platformId": "e50",
+        "platformName": "e50",
+        "type": "erouter",
+        "category": "wired",
+        "authorized": true,
+        "displayName": "nycmesh-699-epr6"
+      },
+      "deviceMetadata": {
+        "alias": "nycmesh-699-epr6"
+      },
+      "site": {
+        "id": "325e1c4d-61e1-45fa-86f5-3e22db820475",
+        "name": "Stations-SN1-227",
+        "status": "unknown",
+        "type": "endpoint",
+        "parent": {
+          "id": "5e15a675-d3cc-4db2-94e9-2b32bb5c87ce",
+          "name": "SN1 - 227",
+          "status": "active",
+          "type": "site",
+          "parent": null
+        }
+      },
+      "affectedDevices": 0,
+      "children": []
     }
 ]

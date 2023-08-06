@@ -1,0 +1,214 @@
+{
+  "identification": {
+    "id": "277a1e94-6cc5-4391-aa6d-3b8b2ceb7319",
+    "site": {
+      "id": "10bef093-7f8a-4872-9cc0-26ef05b622f2",
+      "name": "Stations-Saratoga-1340",
+      "status": "unknown",
+      "type": "endpoint",
+      "parent": {
+        "id": "b5403492-4f3a-4ac6-91ee-f972bb838dde",
+        "name": "Saratoga - 1340",
+        "status": "active",
+        "type": "site",
+        "parent": null
+      }
+    },
+    "mac": "18:e8:29:8c:c1:15",
+    "name": "nycmesh-lbe-4018",
+    "hostname": "nycmesh-lbe-4018",
+    "serialNumber": null,
+    "firmwareVersion": "8.7.1",
+    "udapiVersion": "1.1.1",
+    "bridgeVersion": "0.12.2-no-git",
+    "subsystemId": null,
+    "model": "LBE-5AC-Gen2",
+    "modelName": "LiteBeam 5AC",
+    "vendor": "Ubiquiti",
+    "platformId": "WA",
+    "platformName": "WA",
+    "type": "airMax",
+    "category": "wireless",
+    "authorized": true,
+    "updated": "2023-05-23T22:46:26.961Z",
+    "started": "2023-04-18T15:26:05.986Z",
+    "displayName": "nycmesh-lbe-4018",
+    "role": "station"
+  },
+  "uplinkDevice": null,
+  "features": {
+    "has60GhzRadio": false,
+    "hasBackupAntenna": false,
+    "isUdapiSpeedTestSupported": false,
+    "isUsingUdapiUpdaters": true,
+    "isSupportRouter": false
+  },
+  "overview": {
+    "antenna": {},
+    "downlinkCapacity": 221400000,
+    "uplinkCapacity": 151200000,
+    "stationsCount": 1,
+    "linkStationsCount": 0,
+    "linkActiveStationsCount": 0,
+    "status": "active",
+    "canUpgrade": true,
+    "isLocateRunning": null,
+    "cpu": 7,
+    "ram": 51,
+    "signal": -58,
+    "signalMax": null,
+    "remoteSignalMax": null,
+    "uptime": 3050422,
+    "serviceUptime": null,
+    "serviceTime": null,
+    "distance": 3450,
+    "lastSeen": "2023-05-23T22:46:26.961Z",
+    "createdAt": "2019-09-07T17:37:49.444Z",
+    "voltage": null,
+    "consumption": null,
+    "biasCurrent": null,
+    "outputPower": null,
+    "outputPowers": null,
+    "maximalPower": null,
+    "frequency": 5700,
+    "temperature": null,
+    "powerStatus": null,
+    "batteryCapacity": null,
+    "batteryTime": null,
+    "psu": [
+      {
+        "psuType": null,
+        "connected": false,
+        "maxChargingPower": null,
+        "voltage": null,
+        "power": null,
+        "batteryCapacity": null,
+        "batteryTime": null,
+        "batteryType": null
+      }
+    ],
+    "linkScore": {
+      "linkScore": 0.509,
+      "score": 0.509,
+      "scoreMax": 1,
+      "airTime": null,
+      "airTimeScore": 0,
+      "linkScoreHint": "The performance of this link can be increased with a better antenna or by increasing the output power."
+    },
+    "wirelessMode": "sta-ptmp",
+    "wirelessActiveInterfaceIds": [
+      "main"
+    ],
+    "mainInterfaceSpeed": {
+      "availableSpeed": null
+    }
+  },
+  "discovery": null,
+  "mode": "bridge",
+  "firmware": {
+    "compatible": true,
+    "current": "8.7.1",
+    "latest": "8.7.11",
+    "latestOnCurrentMajorVersion": "8.7.11",
+    "latestOver": null,
+    "upgradeRecommendedToVersion": null,
+    "prospective": null,
+    "semver": {
+      "current": {
+        "major": 8,
+        "minor": 7,
+        "patch": 1,
+        "prerelease": [],
+        "order": "524295.1.0"
+      },
+      "latest": {
+        "major": 8,
+        "minor": 7,
+        "patch": 11,
+        "prerelease": [],
+        "order": "524295.11.0"
+      },
+      "latestOver": null,
+      "latestOnCurrentMajorVersion": {
+        "major": 8,
+        "minor": 7,
+        "patch": 11,
+        "prerelease": [],
+        "order": "524295.11.0"
+      }
+    }
+  },
+  "upgrade": null,
+  "meta": {
+    "firmwareCompatibility": "compatible",
+    "failedMessageDecryption": false,
+    "maintenance": true,
+    "maintenanceEnabledAt": null,
+    "restartTimestamp": null,
+    "alias": null,
+    "note": null
+  },
+  "attributes": {
+    "series": "AC",
+    "ssid": "nycmesh-1340-west1",
+    "apDevice": {
+      "type": "airMax",
+      "name": "nycmesh-1340-west1",
+      "model": "RP-5AC-Gen2",
+      "id": "5949ca17-7037-406c-a276-8db9228d762c",
+      "firmware": {
+        "compatible": true,
+        "current": "8.7.1",
+        "latest": "8.7.11",
+        "latestOnCurrentMajorVersion": "8.7.11",
+        "latestOver": null,
+        "upgradeRecommendedToVersion": null,
+        "prospective": null,
+        "semver": {
+          "current": {
+            "major": 8,
+            "minor": 7,
+            "patch": 1,
+            "prerelease": [],
+            "order": "524295.1.0"
+          },
+          "latest": {
+            "major": 8,
+            "minor": 7,
+            "patch": 11,
+            "prerelease": [],
+            "order": "524295.11.0"
+          },
+          "latestOver": null,
+          "latestOnCurrentMajorVersion": {
+            "major": 8,
+            "minor": 7,
+            "patch": 11,
+            "prerelease": [],
+            "order": "524295.11.0"
+          }
+        }
+      }
+    },
+    "country": "United States",
+    "countryCode": 840
+  },
+  "ipAddress": "10.70.131.177/24",
+  "ipAddressList": [],
+  "enabled": true,
+  "latestBackup": {
+    "timestamp": "2022-10-14T15:46:45.884Z",
+    "id": "dcbef932-18b5-4412-98a8-b3c3651b0859"
+  },
+  "configuration": null,
+  "location": {
+    "altitude": 25.01,
+    "elevation": null,
+    "heading": null,
+    "latitude": 40.685823,
+    "longitude": -73.9173,
+    "magneticHeading": null,
+    "roll": null,
+    "tilt": null
+  }
+}

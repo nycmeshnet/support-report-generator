@@ -350,6 +350,15 @@ def test_report_all():
             device_name="nycmesh-abc-123",
             site_name="Ignore token detected",
             incident_type=IncidentType.OUTAGE,
+            event_time=None,
+            ignored=True,
+        ),
+        Incident(
+            device_name="nycmesh-xyz-777",
+            site_name="maintenance mode",
+            incident_type=IncidentType.OUTAGE,
+            event_time=None,
+            ignored=True,
         ),
     ]
 
@@ -386,5 +395,6 @@ nycmesh-abc-789 (grand3) (-34.43 dBm)
 
 Ignored Issues - All Sources
 nycmesh-abc-123 (Ignore token detected)
+nycmesh-xyz-777 (maintenance mode)
 """
     )

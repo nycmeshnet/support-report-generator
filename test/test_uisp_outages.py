@@ -35,6 +35,8 @@ def mock_get_device():
         file_name = "test/uisp_data/device.json"
         if device_id == "INJECT_IGNORE_TOKEN":
             file_name = "test/uisp_data/device_with_ignore_token.json"
+        elif device_id == "INJECT_MAINTENANCE_MODE":
+            file_name = "test/uisp_data/device_in_maintenance_mode.json"
         with open(file_name) as device_file:
             return json.load(device_file)
 
@@ -96,6 +98,13 @@ def test_get_uisp_outage_lists(mock_login, mock_get_outages, mock_get_device):
         Incident(
             device_name="nycmesh-yyyy-test-dev",
             site_name="otherstuff   abc def",
+            event_time=None,
+            incident_type=IncidentType.OUTAGE,
+            ignored=True,
+        ),
+        Incident(
+            device_name="nycmesh-zzzz-test-dev",
+            site_name="maintenance mode",
             event_time=None,
             incident_type=IncidentType.OUTAGE,
             ignored=True,
