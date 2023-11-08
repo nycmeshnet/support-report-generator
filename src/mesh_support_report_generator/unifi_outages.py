@@ -1,9 +1,10 @@
-from datetime import datetime, timezone, timedelta
 import json
 import os
+from datetime import datetime, timedelta, timezone
 
-from dotenv import load_dotenv
 import requests
+from dotenv import load_dotenv
+
 import mesh_support_report_generator.endpoints as endpoints
 from mesh_support_report_generator.incident import Incident, IncidentType
 
@@ -69,6 +70,7 @@ def get_unifi_outage_lists():
             ),
         }
         for device in devices_full_data
+        if "_id" in device
     ]
 
     last_week = datetime.now(tz=timezone.utc) - timedelta(days=LAST_N_DAYS_TO_REPORT)
