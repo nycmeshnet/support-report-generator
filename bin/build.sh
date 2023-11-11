@@ -1,3 +1,5 @@
+set -ex
+
 rm -rf build/
 mkdir -p build/temp/
 pip install . --target build/temp/
