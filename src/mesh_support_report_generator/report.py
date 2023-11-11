@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytz
 
-from mesh_support_report_generator import uisp_outages, unifi_outages, ufiber_outages
+from mesh_support_report_generator import ufiber_outages, uisp_outages, unifi_outages
 from mesh_support_report_generator.incident import IncidentType
 
 
@@ -17,7 +17,7 @@ def write_report(
     report_time = datetime.now(tz=pytz.timezone("US/Eastern")).strftime(
         "%A, %B %d, %Y @ %H:%M"
     )
-    report_header = f"Outage Report - {report_time}"
+    report_header = f"Daily Impaired Devices Report - {report_time}"
     stream.write(f"**{report_header}**\n\n")
 
     print(
