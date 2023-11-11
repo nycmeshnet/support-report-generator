@@ -15,7 +15,7 @@ def test_report_no_incidents():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 -- None --
@@ -68,7 +68,7 @@ def test_report_uisp_only():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 nycmesh-abc-123 (offline since 2023-04-14 @ 20:00)
@@ -126,7 +126,7 @@ def test_report_unifi_only():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 -- None --
@@ -171,7 +171,7 @@ def test_report_ufiber_outage_only():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 -- None --
@@ -215,7 +215,7 @@ def test_report_ufiber_poor_experience_only():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 -- None --
@@ -259,7 +259,7 @@ def test_report_ufiber_poor_signal_only():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 -- None --
@@ -367,7 +367,7 @@ def test_report_all():
     stream.seek(0)
     assert (
         stream.read()
-        == """**Outage Report - Friday, April 14, 2023 @ 20:00**
+        == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
 nycmesh-abc-123 (offline since 2023-04-14 @ 20:00)
