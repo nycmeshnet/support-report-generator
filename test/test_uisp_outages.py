@@ -1,10 +1,9 @@
 import json
+from datetime import datetime
+from unittest import mock
 from unittest.mock import patch
 
 import pytest
-from datetime import datetime
-from unittest import mock
-
 from dateutil.tz import tzutc
 from freezegun import freeze_time
 
@@ -20,30 +19,13 @@ def mock_login():
 
 
 @pytest.fixture
-def mock_get_outages():
+def mock_get_devices():
     with mock.patch(
-        "mesh_support_report_generator.uisp_outages.get_outages"
-    ) as mock_get_outages:
-        with open("test/uisp_data/outages.json") as outages_file:
-            mock_get_outages.return_value = {"items": json.load(outages_file)}
-        yield mock_get_outages
-
-
-@pytest.fixture
-def mock_get_device():
-    def mocked_get_device(_, device_id: str):
-        file_name = "test/uisp_data/device.json"
-        if device_id == "INJECT_IGNORE_TOKEN":
-            file_name = "test/uisp_data/device_with_ignore_token.json"
-        elif device_id == "INJECT_MAINTENANCE_MODE":
-            file_name = "test/uisp_data/device_in_maintenance_mode.json"
-        with open(file_name) as device_file:
-            return json.load(device_file)
-
-    with mock.patch(
-        "mesh_support_report_generator.uisp_outages.get_device", mocked_get_device
-    ) as mock_get_device:
-        yield mock_get_device
+        "mesh_support_report_generator.uisp_outages.get_all_devices"
+    ) as mock_get_all_devices:
+        with open("test/uisp_data/devices.json") as devices_file:
+            mock_get_all_devices.return_value = json.load(devices_file)
+        yield mock_get_all_devices
 
 
 @patch(
@@ -54,33 +36,23 @@ def mock_get_device():
     "mesh_support_report_generator.uisp_outages.IGNORE_OUTAGE_TOKEN",
     "!!IGNORE_OUTAGE!!",
 )
-@freeze_time("2023-04-15")
-def test_get_uisp_outage_lists(mock_login, mock_get_outages, mock_get_device):
+@freeze_time("2024-05-12")
+def test_get_uisp_outage_lists(mock_login, mock_get_devices):
     incidents, ignored_incidents = uisp_outages.get_uisp_outage_lists()
     expected_incidents = [
         Incident(
-            device_name="nycmesh-426-sxt1",
-            event_time=datetime(2023, 5, 23, 22, 34, 56, 888000, tzinfo=tzutc()),
+            device_name="nycmesh-200-omni",
+            event_time=datetime(2024, 5, 12, 19, 50, 40, 413000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
         Incident(
-            device_name="nycmesh-lbe-1327",
-            event_time=datetime(2023, 5, 23, 22, 34, 51, 598000, tzinfo=tzutc()),
+            device_name="nycmesh-156-omni",
+            event_time=datetime(2024, 5, 12, 19, 50, 40, 413000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
         Incident(
-            device_name="nycmesh-234-omni",
-            event_time=datetime(2023, 5, 23, 14, 57, 15, 356000, tzinfo=tzutc()),
-            incident_type=IncidentType.OUTAGE,
-        ),
-        Incident(
-            device_name="nycmesh-464-omni",
-            event_time=datetime(2023, 5, 23, 3, 42, 18, 394000, tzinfo=tzutc()),
-            incident_type=IncidentType.OUTAGE,
-        ),
-        Incident(
-            device_name="nycmesh-lbe-464",
-            event_time=datetime(2023, 5, 23, 3, 26, 23, 283000, tzinfo=tzutc()),
+            device_name="nycmesh-238-lbe-240",
+            event_time=datetime(2024, 5, 8, 14, 47, 2, 507000, tzinfo=tzutc()),
             incident_type=IncidentType.OUTAGE,
         ),
     ]
@@ -89,7 +61,7 @@ def test_get_uisp_outage_lists(mock_login, mock_get_outages, mock_get_device):
 
     assert ignored_incidents == [
         Incident(
-            device_name="nycmesh-yyyy-test-dev",
+            device_name="nycmesh-xxxx-test-dev",
             site_name="Grand Street - 1933",
             event_time=None,
             incident_type=IncidentType.OUTAGE,

@@ -1,10 +1,11 @@
-from datetime import datetime, timezone, timedelta
 import json
 import os
+from datetime import datetime, timedelta, timezone
 
+import requests
 from dateutil import parser
 from dotenv import load_dotenv
-import requests
+
 import mesh_support_report_generator.endpoints as endpoints
 from mesh_support_report_generator.incident import Incident, IncidentType
 
@@ -26,24 +27,10 @@ def login(session: requests.Session):
     ).headers["x-auth-token"]
 
 
-def get_outages(session: requests.Session, count: int, page: int):
+def get_all_devices(session: requests.Session):
     return json.loads(
         session.get(
-            endpoints.UISP_OUTAGES,
-            params={
-                "count": count,
-                "page": page,
-                "period": 1000 * 60 * 60 * 24,
-            },
-            verify=False,
-        ).content.decode("UTF8")
-    )
-
-
-def get_device(session: requests.Session, device_id: str):
-    return json.loads(
-        session.get(
-            endpoints.UISP_DEVICE_DETAILS + device_id,
+            endpoints.UISP_DEVICES,
             verify=False,
         ).content.decode("UTF8")
     )
@@ -52,28 +39,34 @@ def get_device(session: requests.Session, device_id: str):
 def get_uisp_outage_lists():
     session = requests.Session()
     session.headers = {"x-auth-token": login(session)}
-    outages = get_outages(session, 1000, 1)
+    devices = get_all_devices(session)
 
     last_week = datetime.now(tz=timezone.utc) - timedelta(days=LAST_N_DAYS_TO_REPORT)
-    new_outages = [
-        outage
-        for outage in outages["items"]
-        if parser.parse(outage["startTimestamp"]) > last_week and outage["inProgress"]
+    outage_devices = [
+        device
+        for device in devices
+        if device["overview"]["status"] != "active"
+        and device["identification"]["type"] != "onu"  # These get handled separately
+        and parser.parse(device["overview"]["lastSeen"]) > last_week
     ]
 
     output_outages = []
-    for outage in new_outages:
+    for device in outage_devices:
         incident = Incident(
-            device_name=outage["device"]["name"],
+            device_name=device["identification"]["name"],
             incident_type=IncidentType.OUTAGE,
-            event_time=parser.parse(outage["startTimestamp"]),
+            event_time=parser.parse(device["overview"]["lastSeen"]),
         )
 
-        device_details = get_device(session, outage["device"]["id"])
-        notes = device_details["meta"]["note"]
-        if notes and IGNORE_OUTAGE_TOKEN in device_details["meta"]["note"]:
+        notes = device["meta"]["note"]
+        site_id = (
+            device["identification"]["site"]["id"]
+            if device["identification"]["site"]
+            else None
+        )
+        if notes and IGNORE_OUTAGE_TOKEN in device["meta"]["note"]:
             notes = (
-                device_details["meta"]["note"]
+                device["meta"]["note"]
                 .replace("\n", " ")
                 .replace(IGNORE_OUTAGE_TOKEN, "")
                 .strip()
@@ -81,11 +74,11 @@ def get_uisp_outage_lists():
             incident.ignored = True
             incident.site_name = notes if len(notes) > 0 else "Ignore token detected"
             incident.event_time = None
-        elif outage["device"]["site"]["id"] in UISP_IGNORE_SITE_IDS:
+        elif site_id in UISP_IGNORE_SITE_IDS:
             incident.ignored = True
-            incident.site_name = outage["device"]["site"]["name"]
+            incident.site_name = device["identification"]["site"]["name"]
             incident.event_time = None
-        elif device_details["meta"]["maintenance"]:
+        elif device["meta"]["maintenance"]:
             incident.ignored = True
             incident.event_time = None
             incident.site_name = "maintenance mode"
@@ -93,6 +86,10 @@ def get_uisp_outage_lists():
         output_outages.append(incident)
 
     return (
-        [incident for incident in output_outages if not incident.ignored],
+        sorted(
+            [incident for incident in output_outages if not incident.ignored],
+            key=lambda x: x.event_time,
+            reverse=True,
+        ),
         [incident for incident in output_outages if incident.ignored],
     )
