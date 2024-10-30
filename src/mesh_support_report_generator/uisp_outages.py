@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 
 import mesh_support_report_generator.endpoints as endpoints
 from mesh_support_report_generator.incident import Incident, IncidentType
+from urllib3.exceptions import InsecureRequestWarning
 
 load_dotenv()
 
@@ -17,6 +18,10 @@ LAST_N_DAYS_TO_REPORT = 7
 
 
 def login(session: requests.Session):
+    # Suppress the 'Unverified HTTPS request is being made to host' log spam
+    # because the POST is made with verify=False
+    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
     return session.post(
         endpoints.UISP_LOGIN,
         json={
