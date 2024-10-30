@@ -8,6 +8,8 @@ UNIFI_BASE = "https://unifi.nycmesh.net:8443/api"
 UNIFI_LOGIN = UNIFI_BASE + "/login"
 UNIFI_LIST_SITES = UNIFI_BASE + "/self/sites"
 UNIFI_LIST_DEVICES = UNIFI_BASE + "/s/%s/stat/device"
+UNIFI_LIST_SSIDS = UNIFI_BASE + "/s/%s/rest/wlanconf"
+UNIFI_SSID = UNIFI_BASE + "/s/%s/rest/wlanconf/%s"
 
 UFIBER_BASES = {
     "nycmesh-1932-olt3": "https://10.70.188.2/api/v1.0",
@@ -15,7 +17,6 @@ UFIBER_BASES = {
     "nycmesh-1934-olt1": "https://10.70.188.4/api/v1.0",
     "nycmesh-1936-olt-xgs": "https://10.70.188.5/api/v1.0",
     "nycmesh-584-olt-xgs": "https://10.70.198.4/api/v1.0",
-
 }
 UFIBER_LOGIN_SUFFIX = "/user/login"
 UFIBER_LIST_DEVICES_SUFFIX = "/gpon/onus"
