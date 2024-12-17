@@ -1,17 +1,13 @@
 import os
-
-from mesh_support_report_generator.endpoints import UFIBER_BASES
-from mesh_support_report_generator.post_to_slack import post_to_slack
-from mesh_support_report_generator.report import write_report
-from mesh_support_report_generator.ufiber_outages import (
-    get_ufiber_outage_lists,
-)
-from mesh_support_report_generator import uisp_outages
-from mesh_support_report_generator import unifi_outages
-
 from io import StringIO
 
 from dotenv import load_dotenv
+
+from mesh_support_report_generator import uisp_outages, unifi_outages
+from mesh_support_report_generator.endpoints import UFIBER_BASES
+from mesh_support_report_generator.post_to_slack import post_to_slack
+from mesh_support_report_generator.report import write_report
+from mesh_support_report_generator.ufiber_outages import get_ufiber_outage_lists
 
 load_dotenv()
 
@@ -27,12 +23,13 @@ def main():
     ufiber_incidents = []
     ufiber_ignored = []
     for olt_name, incident_lists in ufiber_incidents_by_olt.items():
-        for incident in incident_lists["reported"]:
-            incident.site_name = olt_name
-            ufiber_incidents.append(incident)
+        if incident_lists:
+            for incident in incident_lists["reported"]:
+                incident.site_name = olt_name
+                ufiber_incidents.append(incident)
 
-        for incident in incident_lists["ignored"]:
-            ufiber_ignored.append(incident)
+            for incident in incident_lists["ignored"]:
+                ufiber_ignored.append(incident)
 
     ignored_incidents = [*uisp_ignored, *ufiber_ignored]
 
