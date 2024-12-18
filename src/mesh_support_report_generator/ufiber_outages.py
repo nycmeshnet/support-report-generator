@@ -6,7 +6,7 @@ import requests
 import mesh_support_report_generator.endpoints as endpoints
 from mesh_support_report_generator.incident import Incident, IncidentType
 from requests import ConnectTimeout
-from urllib3.exceptions import InsecureRequestWarning
+from urllib3.exceptions import InsecureRequestWarning, MaxRetryError
 
 load_dotenv()
 
@@ -111,7 +111,7 @@ def get_ufiber_outage_lists(ufiber_endpoint):
     session = requests.Session()
     try:
         session.headers = {"x-auth-token": login(session, ufiber_endpoint)}
-    except ConnectTimeout:
+    except (ConnectTimeout, MaxRetryError):
         print("Timed out while connecting to UFiber device {}, skipping".format(ufiber_endpoint))
         return
 
