@@ -1,0 +1,33 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "7bf61dd4-bb50-4206-ab6e-9d86729770b7",
+      "latitude": 40.7064593,
+      "longitude": -73.9081391,
+      "altitude": 39.0,
+      "links_from": [
+        {
+          "id": "25ef6210-c741-48b9-9fef-9d87f58ea005"
+        }
+      ],
+      "links_to": [
+        {
+          "id": "f056d0a8-2e17-4241-abfa-39bae9c53c9a"
+        }
+      ],
+      "name": "nycmesh-254-omni",
+      "status": "Active",
+      "install_date": "2021-02-10",
+      "abandon_date": null,
+      "notes": "Automatically imported from UISP on 2024-11-23\n\n",
+      "uisp_id": "0bf91fed-43f9-4246-ac60-7df13e5e5b46",
+      "node": {
+        "id": "05789d21-b0b3-4f4d-8655-8388f669225f",
+        "network_number": 254
+      }
+    }
+  ]
+}

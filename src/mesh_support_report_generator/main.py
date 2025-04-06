@@ -13,7 +13,9 @@ load_dotenv()
 
 
 def main():
-    uisp_incidents, uisp_ignored = uisp_outages.get_uisp_outage_lists()
+    uisp_incidents, uisp_ignored, impacted_map_link = (
+        uisp_outages.get_uisp_outage_lists()
+    )
     unifi_incidents = unifi_outages.get_unifi_outage_lists()
     ufiber_incidents_by_olt = {
         olt_name: get_ufiber_outage_lists(endpoint)
@@ -40,6 +42,7 @@ def main():
         unifi_incidents,
         ufiber_incidents,
         ignored_incidents,
+        impacted_map_link,
     )
 
     string_stream.seek(0)

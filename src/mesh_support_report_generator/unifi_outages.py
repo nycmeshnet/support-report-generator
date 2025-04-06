@@ -65,11 +65,13 @@ def get_unifi_outage_lists():
             "site": device["site"],
             "name": device.get("name", device["mac"]),
             "in_outage": device["state"] == 0,
-            "most_recent_connect_time": datetime.fromtimestamp(
-                device["start_connected_millis"] / 1000, timezone.utc
-            )
-            if device["state"] == 1
-            else None,
+            "most_recent_connect_time": (
+                datetime.fromtimestamp(
+                    device["start_connected_millis"] / 1000, timezone.utc
+                )
+                if device["state"] == 1
+                else None
+            ),
             "most_recent_disconnect_time": datetime.fromtimestamp(
                 device["start_disconnected_millis"] / 1000, timezone.utc
             ),

@@ -11,7 +11,7 @@ from mesh_support_report_generator.report import write_report
 @freeze_time("2023-04-15")
 def test_report_no_incidents():
     stream = StringIO()
-    write_report(stream, [], [], [], [])
+    write_report(stream, [], [], [], [], None)
     stream.seek(0)
     assert (
         stream.read()
@@ -64,13 +64,16 @@ def test_report_uisp_only():
     ]
 
     stream = StringIO()
-    write_report(stream, uisp_outages, [], [], [])
+    write_report(
+        stream, uisp_outages, [], [], [], "https://map.nycmesh.net/nodes/123-456-789"
+    )
     stream.seek(0)
     assert (
         stream.read()
         == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
+https://map.nycmesh.net/nodes/123-456-789
 nycmesh-abc-123 (offline since 2023-04-14 @ 20:00)
 nycmesh-abc-456 (offline since 2023-04-14 @ 18:00)
 nycmesh-abc-789 (offline since 2023-04-14 @ 16:00)
@@ -122,7 +125,7 @@ def test_report_unifi_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], unifi_outages, [], [])
+    write_report(stream, [], unifi_outages, [], [], None)
     stream.seek(0)
     assert (
         stream.read()
@@ -167,7 +170,7 @@ def test_report_ufiber_outage_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], [], ufiber_outages, [])
+    write_report(stream, [], [], ufiber_outages, [], None)
     stream.seek(0)
     assert (
         stream.read()
@@ -211,7 +214,7 @@ def test_report_ufiber_poor_experience_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], [], ufiber_outages, [])
+    write_report(stream, [], [], ufiber_outages, [], None)
     stream.seek(0)
     assert (
         stream.read()
@@ -255,7 +258,7 @@ def test_report_ufiber_poor_signal_only():
     ]
 
     stream = StringIO()
-    write_report(stream, [], [], ufiber_outages, [])
+    write_report(stream, [], [], ufiber_outages, [], None)
     stream.seek(0)
     assert (
         stream.read()
@@ -363,13 +366,21 @@ def test_report_all():
     ]
 
     stream = StringIO()
-    write_report(stream, uisp_outages, unifi_outages, ufiber_outages, ignored_outages)
+    write_report(
+        stream,
+        uisp_outages,
+        unifi_outages,
+        ufiber_outages,
+        ignored_outages,
+        "https://map.nycmesh.net/nodes/123-456-789",
+    )
     stream.seek(0)
     assert (
         stream.read()
         == """**Daily Impaired Devices Report - Friday, April 14, 2023 @ 20:00**
 
 UISP - Currently In Outage (new last 7 days)
+https://map.nycmesh.net/nodes/123-456-789
 nycmesh-abc-123 (offline since 2023-04-14 @ 20:00)
 nycmesh-abc-456 (offline since 2023-04-14 @ 18:00)
 nycmesh-abc-789 (offline since 2023-04-14 @ 16:00)

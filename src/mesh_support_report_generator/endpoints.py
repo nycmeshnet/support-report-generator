@@ -19,3 +19,8 @@ UFIBER_BASES = {
 UFIBER_LOGIN_SUFFIX = "/user/login"
 UFIBER_LIST_DEVICES_SUFFIX = "/gpon/onus"
 UFIBER_DESCRIBE_DEVICE_SUFFIX = "/gpon/onus/%s/settings"
+
+MESHDB_BASE = "https://db.nycmesh.net/api/v1"
+MESHDB_DEVICES_BY_UISP_ID = MESHDB_BASE + "/devices/lookup/?uisp_id="
+
+MESH_MAP_WITH_NODES = "https://map.nycmesh.net/nodes/"

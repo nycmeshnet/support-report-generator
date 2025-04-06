@@ -28,6 +28,16 @@ def mock_get_devices():
         yield mock_get_all_devices
 
 
+@pytest.fixture
+def mock_meshdb_get_device():
+    with mock.patch(
+        "mesh_support_report_generator.uisp_outages.get_device_details_for_uisp_id"
+    ) as mock_get_nn_for_uisp_id:
+        with open("test/meshdb_data/device_lookup.json") as devices_file:
+            mock_get_nn_for_uisp_id.return_value = json.load(devices_file)
+        yield mock_get_nn_for_uisp_id
+
+
 @patch(
     "mesh_support_report_generator.uisp_outages.UISP_IGNORE_SITE_IDS",
     ["GRAVEYARD_SITE_ID"],
@@ -37,8 +47,8 @@ def mock_get_devices():
     "!!IGNORE_OUTAGE!!",
 )
 @freeze_time("2024-05-12")
-def test_get_uisp_outage_lists(mock_login, mock_get_devices):
-    incidents, ignored_incidents = uisp_outages.get_uisp_outage_lists()
+def test_get_uisp_outage_lists(mock_login, mock_get_devices, mock_meshdb_get_device):
+    incidents, ignored_incidents, map_link = uisp_outages.get_uisp_outage_lists()
     expected_incidents = [
         Incident(
             device_name="nycmesh-200-omni",
@@ -82,3 +92,5 @@ def test_get_uisp_outage_lists(mock_login, mock_get_devices):
             ignored=True,
         ),
     ]
+
+    assert map_link == "https://map.nycmesh.net/nodes/254"

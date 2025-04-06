@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime, timedelta, timezone
+from typing import Optional, Any
 
 import requests
 from dateutil import parser
@@ -12,6 +13,7 @@ from urllib3.exceptions import InsecureRequestWarning
 
 load_dotenv()
 
+MESHDB_TOKEN = os.environ["MESHDB_TOKEN"]
 IGNORE_OUTAGE_TOKEN = os.environ.get("IGNORE_OUTAGE_TOKEN")
 UISP_IGNORE_SITE_IDS = os.environ.get("UISP_IGNORE_SITE_IDS", "").split(",")
 LAST_N_DAYS_TO_REPORT = 7
@@ -41,6 +43,17 @@ def get_all_devices(session: requests.Session):
     )
 
 
+def get_device_details_for_uisp_id(uisp_id: str) -> Optional[Any]:
+    meshdb_devices_response = requests.get(
+        endpoints.MESHDB_DEVICES_BY_UISP_ID + uisp_id,
+        headers={"Authorization": f"Token {MESHDB_TOKEN}"},
+    )
+    if meshdb_devices_response.ok:
+        return meshdb_devices_response.json()
+
+    return None
+
+
 def get_uisp_outage_lists():
     session = requests.Session()
     session.headers = {"x-auth-token": login(session)}
@@ -55,6 +68,7 @@ def get_uisp_outage_lists():
         and parser.parse(device["overview"]["lastSeen"]) > last_week
     ]
 
+    impacted_nns = set()
     output_outages = []
     for device in outage_devices:
         incident = Incident(
@@ -90,6 +104,14 @@ def get_uisp_outage_lists():
 
         output_outages.append(incident)
 
+        meshdb_response = get_device_details_for_uisp_id(device["identification"]["id"])
+        if meshdb_response and len(meshdb_response["results"]) > 0:
+            impacted_nns.add(
+                str(meshdb_response["results"][0]["node"]["network_number"])
+            )
+
+    impacted_sites_map_link = endpoints.MESH_MAP_WITH_NODES + "-".join(impacted_nns)
+
     return (
         sorted(
             [incident for incident in output_outages if not incident.ignored],
@@ -97,4 +119,5 @@ def get_uisp_outage_lists():
             reverse=True,
         ),
         [incident for incident in output_outages if incident.ignored],
+        impacted_sites_map_link,
     )

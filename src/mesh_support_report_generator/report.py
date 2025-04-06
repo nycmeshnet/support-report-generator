@@ -13,6 +13,7 @@ def write_report(
     unifi_incidents,
     ufiber_incidents,
     ignored_incidents,
+    impacted_map_link,
 ):
     report_time = datetime.now(tz=pytz.timezone("US/Eastern")).strftime(
         "%A, %B %d, %Y @ %H:%M"
@@ -24,6 +25,8 @@ def write_report(
         f"UISP - Currently In Outage (new last {uisp_outages.LAST_N_DAYS_TO_REPORT} days)",
         file=stream,
     )
+    if impacted_map_link:
+        stream.write(f"{impacted_map_link}\n")
     for incident in uisp_incidents:
         print(incident, file=stream)
     if len(uisp_incidents) == 0:
