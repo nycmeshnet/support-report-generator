@@ -104,11 +104,14 @@ def get_uisp_outage_lists():
 
         output_outages.append(incident)
 
-        meshdb_response = get_device_details_for_uisp_id(device["identification"]["id"])
-        if meshdb_response and len(meshdb_response["results"]) > 0:
-            impacted_nns.add(
-                str(meshdb_response["results"][0]["node"]["network_number"])
+        if not incident.ignored:
+            meshdb_response = get_device_details_for_uisp_id(
+                device["identification"]["id"]
             )
+            if meshdb_response and len(meshdb_response["results"]) > 0:
+                impacted_nns.add(
+                    str(meshdb_response["results"][0]["node"]["network_number"])
+                )
 
     impacted_sites_map_link = endpoints.MESH_MAP_WITH_NODES + "-".join(impacted_nns)
 
