@@ -15,6 +15,8 @@ UFIBER_BASES = {
     "nycmesh-1934-olt1": "https://10.70.188.4/api/v1.0",
     "nycmesh-1936-olt-xgs": "https://10.70.188.5/api/v1.0",
     "nycmesh-584-olt-xgs": "https://10.70.198.4/api/v1.0",
+    "nycmesh-730-olt-xgs": "https://10.70.211.2/api/v1.0",
+    "nycmesh-3461-olt": "https://10.70.171.5/api/v1.0",
 }
 UFIBER_LOGIN_SUFFIX = "/user/login"
 UFIBER_LIST_DEVICES_SUFFIX = "/gpon/onus"
